@@ -20,8 +20,16 @@ object Chapitre1 {
 
     println(factorial2(BigInteger.TEN))
 
+    // immutabilité
+    var s = "osdfKLKSQDlkqsdmlkOksmdlfksmldfkooooPppsdfkjlhQ"
+    s.replace("o","88") // référenciellement transparente : une unique entrée => une unique sortie
+    println(s)
+
+    var a = s.exists(_.isUpper)
+    println(a)
 
   }
 
+  class MyClass(x: Int, s: String)
 
 }
