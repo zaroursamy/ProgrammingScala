@@ -9,8 +9,12 @@ object Chapitre2 {
     val msg3: java.lang.String = "c'est l'heure d'aller manger"
 
     def max(x: Int, y: Int): Int = if (x > y) x else y
-
     println(max(1, 2))
+
+    println("-----------------------------------------")
+
+    def maxString(x:String, y:String): String = if(x.length > y.length) x else y
+    println(maxString(msg, msg2))
 
     println("Programmation impérative")
     var i = 0
@@ -23,9 +27,10 @@ object Chapitre2 {
     var liste = (0 to 9)
     liste.foreach(println)
     liste.foreach(arg => println(arg))
-
+    println("-----------------------------------------")
     msg.foreach(println)
 
+    // a chaque iteration, une nouvelle variable de type val est creee
     for(x <- liste) println(x)
 
 
