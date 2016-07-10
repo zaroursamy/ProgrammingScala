@@ -75,6 +75,19 @@ object Chapitre3 {
     movieSet += "Scream"
     println(movieSet) // scream est ajouté
 
+    import scala.collection.immutable.HashSet
+    val hashSet = HashSet("tomtate","poivron")
+    println(hashSet +"oignon")
+
+    // Map: immutable & mutable
+    import scala.collection.mutable.Map
+    val instructions = Map[Int, String]()
+    // equivalent a (1).->("prendre des glucides")
+    instructions += (1 -> "prendre des glucides")
+    instructions += (2 -> "prendre des proteines")
+    instructions += (3 -> "aller a la salle de sport")
+    println(instructions)
+    println(instructions(3))
 
 
 
