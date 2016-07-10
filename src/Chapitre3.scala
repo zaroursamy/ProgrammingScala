@@ -28,6 +28,7 @@ object Chapitre3 {
     // scala comprend que c'est un array de string. chaque fois qu'il y a une (), une methode apply() est appelée
     val numNames = Array("zero","one","two")
     val numNames2 = Array.apply("zero","one","two")
+    numNames.foreach(println); numNames2.foreach(println)
 
     // les arrays sont mutables mais pas les listes
     val uneListe = List(1,2,3)
@@ -36,8 +37,23 @@ object Chapitre3 {
     val unDeux = List(1,2)
     val troisQuatre = List(3,4)
     val unDeuxTroisQuatre = unDeux ::: troisQuatre
-    // cons ( :: operator)
+
+    // cons ( :: operator). List(2,3).::(1) (invoqué sur l'opérande de droite)
     val unDeuxTrois = 1 :: List(2,3)
+    // Nil = List()
+    val uneListe2 = "premierElement"::"deuxiemeElement"::"troisiemeElement"::Nil
+    uneListe2.foreach(println)
+    // supprimer le premier element
+    uneListe2.drop(1).foreach(println)
+    println("-------")
+    // supprimer les deux derniers
+    uneListe2.dropRight(2).foreach(println(_))
+    // existence d'un element
+    println(uneListe2.exists(_=="premierElement"))
+    // renvoie true si tous les elements satisfont le prédicat
+    println(uneListe2.forall(_.endsWith("t")))
+    println(List("un","deux","trois").forall(_.endsWith("x")))
+    println(uneListe2.mkString("///////"))
 
 
 
