@@ -89,6 +89,15 @@ object Chapitre3 {
     println(instructions)
     println(instructions(3))
 
+    // immutable est la map par defaut; pâs besoin d'import
+    val instructions2 = Map(1->"entrainement", 2->"repos", 3->"diete")
+    instructions2 += (4 -> "impôssible")
+    println(instructions2)
+    // ne comprend pas  : censé etre immutable mais on a pu rajouter le 4 ?
+
+    // fonction avec et sans effet de bord
+    def avecEffet(args: Array[String]): Unit = args.foreach(println)
+    def sansEffet(args: Array[String]): String = args.mkString("\n")
 
 
 
