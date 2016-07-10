@@ -55,6 +55,29 @@ object Chapitre3 {
     println(List("un","deux","trois").forall(_.endsWith("x")))
     println(uneListe2.mkString("///////"))
 
+    println("__________________________tuples__________________________")
+    // un tuple est comme une liste (immutable) mais peut contenir differents types d'elements
+    // ce typle est de type Tuple(Int, String, Int, String)
+    // pâs de méthode apply car apply retourne toujours le meme type
+    val unTuple = (1, "un", 2, "deux")
+    println(unTuple._1, unTuple._2)
+
+    println("__________________________ set__________________________")
+
+    // java: implemente interface. Scala: extend trait
+    var jetSet = Set("Boeing","Airbus")
+    jetSet += "Lear"
+    println(jetSet.contains("Lear"))//true
+
+    import scala.collection.mutable.Set
+    val movieSet = Set("Hitch","Heat")
+    // equivalent a movieSet.+=("Scream")
+    movieSet += "Scream"
+    println(movieSet) // scream est ajouté
+
+
+
+
 
 
   }
