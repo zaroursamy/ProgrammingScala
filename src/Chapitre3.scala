@@ -98,6 +98,16 @@ object Chapitre3 {
     // fonction avec et sans effet de bord
     def avecEffet(args: Array[String]): Unit = args.foreach(println)
     def sansEffet(args: Array[String]): String = args.mkString("\n")
+    // -------------------------------------------
+
+    // imports
+    import scala.io.Source
+
+    val lines = Source.fromFile(args(0)).getLines().toList
+    def widthOfLength(s: String) = s.length.toString.length
+    var maxWidth = 0
+    for(line <- lines) maxWidth = maxWidth.max(widthOfLength(line))
+    println(maxWidth)
 
 
 
