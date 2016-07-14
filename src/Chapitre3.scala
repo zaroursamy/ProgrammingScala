@@ -103,11 +103,22 @@ object Chapitre3 {
     // imports
     import scala.io.Source
 
-    val lines = Source.fromFile(args(0)).getLines().toList
+    //val lines1 = Source.fromFile(args(0)).getLines().toList
+    val lines = Array("premiere ligne","premiere lignn", "premiere liggg")
     def widthOfLength(s: String) = s.length.toString.length
     var maxWidth = 0
     for(line <- lines) maxWidth = maxWidth.max(widthOfLength(line))
-    println(maxWidth)
+    //println(maxWidth)
+
+    val longestLine = lines.reduceLeft((a,b) => if(a.length>b.length) a else b)
+    var maxWidth2 = widthOfLength(longestLine)
+
+    println("--------------")
+    val text = "un1 texte court et11 limpide"
+    println("1 "+text.length)
+    println("2 "+text.length.toString)
+    println("3 "+text.length.toString.length)
+    println("longestLine: "+longestLine)
 
 
 
