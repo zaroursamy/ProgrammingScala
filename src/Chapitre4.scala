@@ -3,6 +3,7 @@
   */
 object Chapitre4 {
 
+
   class ChecksumAccumulator{
     // sum est un field
     private var sum = 0
@@ -20,18 +21,39 @@ object Chapitre4 {
     def add_ex2(byte: Byte){sum+=byte}
 
     // en mettant le signe = , le type est retourné (Int ici)
-    def add_ex3(byte: Byte) = sum+=byte
+    def add(byte: Byte) = sum+=byte
 
     def checksum(): Int = ~(sum & 0xFF) + 1
 
+    // SINGLETON: objet compagnon (meme nom que la classe). une classe et son compagnon peuvent accéderx aux attributs privés
+    import scala.collection.mutable.Map
+    object ChecksumAccumulator{
+
+      private val cache = Map[String, Int]()
+
+      def calculate(s: String): Int = {
+        if(cache.contains(s)) cache(s)
+
+        else{
+          val acc = new ChecksumAccumulator
+          for(c <- s) acc.add(c.toByte)
+          val cs = acc.checksum()
+          cache += (s -> cs)
+          cs
+        }
+      }
+    }
+
   }
+
+
 
 
   def main(args: Array[String]) {
     val csa = new ChecksumAccumulator
     val acc = new ChecksumAccumulator
     acc.sum2 = 3
-    // acc.sum = 0 ne compile pas ! car sum2 est private
+    // acc.sum = 0 ne compile pas ! car sum est private
 
     println(acc.checksum())
   }
