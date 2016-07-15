@@ -13,7 +13,7 @@ object Chapitre4 {
     // les parametres d'une methodes sont des vals, par des vars
     // méthode a effet de bord: on reassigne sum
     // le compiler scala peut transformer tout type en Unit. si la méthod renvoie un string, alors il convertit le string en unit (si la methode est declaree unit)
-    def add_ex(byte: Byte): Unit = sum+= byte
+    def add_ex1(byte: Byte): Unit = sum+= byte
       // byte = 1 ne compile pas car byte est une val
 
     // autre maniere pour definir une methode a effet de bord:
@@ -26,6 +26,7 @@ object Chapitre4 {
     def checksum(): Int = ~(sum & 0xFF) + 1
 
     // SINGLETON: objet compagnon (meme nom que la classe). une classe et son compagnon peuvent accéderx aux attributs privés
+    // un singleton ne peut pâs prendre de parametres comme les classes (par de new possible)
     import scala.collection.mutable.Map
     object ChecksumAccumulator{
 
@@ -34,6 +35,7 @@ object Chapitre4 {
       def calculate(s: String): Int = {
         if(cache.contains(s)) cache(s)
 
+        // calcul du checksum
         else{
           val acc = new ChecksumAccumulator
           for(c <- s) acc.add(c.toByte)
@@ -45,9 +47,6 @@ object Chapitre4 {
     }
 
   }
-
-
-
 
   def main(args: Array[String]) {
     val csa = new ChecksumAccumulator
