@@ -120,9 +120,6 @@ object Chapitre3 {
     println("3 "+text.length.toString.length)
     println("longestLine: "+longestLine)
 
-
-
-
   }
 
 

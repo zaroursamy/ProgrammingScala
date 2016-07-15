@@ -1,3 +1,4 @@
+
 /**
   * Created by Samy on 14/07/2016.
   */
@@ -48,6 +49,9 @@ object Chapitre4 {
 
   }
 
+
+
+
   def main(args: Array[String]) {
     val csa = new ChecksumAccumulator
     val acc = new ChecksumAccumulator
@@ -55,6 +59,14 @@ object Chapitre4 {
     // acc.sum = 0 ne compile pas ! car sum est private
 
     println(acc.checksum())
+
+  }
+
+
+  object Summer{
+    def main(args: Array[String]): Unit = {
+
+    }
   }
  
 
