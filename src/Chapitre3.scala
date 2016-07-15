@@ -3,7 +3,7 @@ import java.rmi.activation.UnknownObjectException
 /**
   * Created by Samy on 06/07/2016.
   */
-object Chapitre3 {
+class Chapitre3 {
   def main(args: Array[String]) {
     val big = BigInt(1234567890)
     val big2 = big*big

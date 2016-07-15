@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 02/07/2016.
   */
-object Chapitre1 {
+class Chapitre1 {
 
   def main(args: Array[String]) {
     var capital = Map("US"->"Washington", "France"->"Paris")
