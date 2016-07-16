@@ -48,6 +48,34 @@ object Chapitre5 {
         |ca va bien ?
         |"okok"
       """.stripMargin)
+
+  println("symbol")
+
+  // Symbol("cymbal") est idem que 'cymbal. utile si on veut un identifieur dans un langage dynamiquement typé
+  val s = 'quePasaGringo
+  println(s+" "+s.name)
+
+
+  def updateBdd(r: Symbol, value: Any): Unit ={
+    // maj de la bdd
   }
 
+  updateBdd('favoriteAlbum, "2pac greatest hits")
+
+    println("yo yo yo".indexOf('o'))
+    println("yo yo yo" indexOf 'o')
+    println("yo yo yo".indexOf('o',2)) // a partir de l'index 2
+    println("yo yo yo" indexOf ('o',2))
+
+
+    // prefix opérateurs unitaires (unary) : + - ! ~
+    println(2.unary_-, 2.unary_+, 2.unary_~, true.unary_!)
+    println(-2, +2, ~2, !true)
+
+    // postfix operators
+    val unText = "salut la compagnie"
+    println(unText.toUpperCase)
+    println(unText toUpperCase)
+
+  }
 }
