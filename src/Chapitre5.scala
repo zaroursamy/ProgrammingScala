@@ -77,5 +77,16 @@ object Chapitre5 {
     println(unText.toUpperCase)
     println(unText toUpperCase)
 
+    println("------------------------------")
+
+    // égalité d'objets. == appelle la méthode equals si le premier membre est non null
+    // différence avec Java: java compare l'égalité des références avec ==, contrairement à Scala. Pour l"egalite de reference il faut utiliser eq (ou ne)
+    println(1 == 1.0)
+
+    var x = 3
+    x*=2+1
+    println(x)
+
+
   }
 }
