@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 16/07/2016.
   */
-object Chapitre6 {
+class Chapitre6 {
 
   // seul le constructeur primaire peut invoquer un constructeur d'une superclasse
   class Rationnal(n: Int, d: Int){
