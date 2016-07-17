@@ -72,9 +72,32 @@ object Chapitre7 {
         if let == "a" )println(num, let)
     println("-------------")
     grep(".*gcd.*")
+    println("___________")
+    scalaFiles.foreach(println)
 
-    scalaFiles
+    println()
+    println("exceptions :")
+    def half(n: Int) = if(n%2==0) n/2 else throw new RuntimeException("n n'est pas divisible par deux")
+    //println(half(3))
+    println(half(4))
 
+
+    // catch
+    import java.io.FileReader
+    import java.io.FileNotFoundException
+    import java.io.IOException
+    try {
+      val f = new FileReader("input.txt")
+      // Use and close file
+    } catch {
+      case ex: FileNotFoundException => println("fichier manquant")
+      case ex: IOException => println("autre erreur i/o")
+    }
+
+    val f = new FileReader("input.txt")
+    try{
+      f.read()
+    }finally f.close()
 
 
 
