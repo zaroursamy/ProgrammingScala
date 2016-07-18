@@ -99,6 +99,13 @@ object Chapitre7 {
       f.read()
     }finally f.close()
 
+    val firstArg = "dos"
+
+    firstArg match{
+      case "dos" => println("rowing")
+      case "jambes0" => println("squat")
+      case _ => "repos"
+    }
 
 
 
