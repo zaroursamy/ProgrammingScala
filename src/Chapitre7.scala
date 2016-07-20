@@ -124,6 +124,9 @@ object Chapitre7 {
     }
 
     comExclamation.foreach(println)
+    println("ou encore")
+    com.filter(_.endsWith("!")).foreach(println)
+
 
 
 
