@@ -87,25 +87,43 @@ object Chapitre7 {
     import java.io.FileNotFoundException
     import java.io.IOException
     try {
-      val f = new FileReader("input.txt")
+      val f = new FileReader("C:\\Users\\Samy\\datasciencegame\\code\\chargement.py")
       // Use and close file
     } catch {
       case ex: FileNotFoundException => println("fichier manquant")
       case ex: IOException => println("autre erreur i/o")
     }
 
-    val f = new FileReader("input.txt")
+    val f = new FileReader("C:\\Users\\Samy\\datasciencegame\\code\\chargement.py")
     try{
       f.read()
     }finally f.close()
 
-    val firstArg = "dos"
+    val muscle = "dos"
 
-    firstArg match{
-      case "dos" => println("rowing")
-      case "jambes0" => println("squat")
+    val training = muscle match{
+      case "dos" => "rowing"
+      case "jambes" =>"squat"
       case _ => "repos"
     }
+
+    println(training)
+
+    val com = List("voyage agreable", "super !", "à refaire !","bon conducteur", "impressionant!")
+
+    var i = 0
+    var foundIt = false
+    var comExclamation: List[String] = List()
+
+    while(i < com.length){
+      if(com(i).endsWith("!")){
+        comExclamation =  com(i)::comExclamation
+        foundIt = true
+      }
+      i += 1
+    }
+
+    comExclamation.foreach(println)
 
 
 
