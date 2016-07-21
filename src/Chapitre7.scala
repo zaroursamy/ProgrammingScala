@@ -78,7 +78,7 @@ object Chapitre7 {
     println()
     println("exceptions :")
     def half(n: Int) = if(n%2==0) n/2 else throw new RuntimeException("n n'est pas divisible par deux")
-    //println(half(3))
+
     println(half(4))
 
 
@@ -88,7 +88,7 @@ object Chapitre7 {
     import java.io.IOException
     try {
       val f = new FileReader("C:\\Users\\Samy\\datasciencegame\\code\\chargement.py")
-      // Use and close file
+
     } catch {
       case ex: FileNotFoundException => println("fichier manquant")
       case ex: IOException => println("autre erreur i/o")
@@ -126,10 +126,27 @@ object Chapitre7 {
     comExclamation.foreach(println)
     println("ou encore")
     com.filter(_.endsWith("!")).foreach(println)
+    println("mdr")
 
 
+    // tout ce qui est définit dans la loop reste dans la loop; inutilisable ailleurs
+    i = 0
+    while(i < 10){
+      var j = 0
+      if(j % 2 == 0) j = 1 else j = 1
+    }
+
+    println("----")
+    val testScope = 1
+
+    {
+      val testScope = 0
+      println(testScope)
+    }
+    println(testScope)
 
 
+  println("okkkkk")
 
 
   }
