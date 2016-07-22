@@ -146,7 +146,16 @@ object Chapitre7 {
     println(testScope)
 
 
-  println("okkkkk")
+    println("okkkkk")
+
+    def makeRowSeq(row: Int) =
+      for (col <- 1 to 10) yield{
+        val prod = (row*col).toString
+        val padding = " " * (4-prod.length)
+        padding + prod
+      }
+
+    makeRowSeq(2).foreach(println)
 
 
   }
