@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8054dc76-5591-4499-b99c-7020cdf8ef0c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre5.class" afterPath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre7$.class" afterPath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre7$.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProgrammingScala.iml" afterPath="$PROJECT_DIR$/ProgrammingScala.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Chapitre7.scala" afterPath="$PROJECT_DIR$/src/Chapitre7.scala" />
     </list>
     <ignored path="ProgrammingScala.iws" />
@@ -92,8 +87,8 @@
       <file leaf-file-name="Chapitre7.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Chapitre7.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
+            <state relative-caret-position="246">
+              <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
               <folding>
                 <element signature="e#2107#2132#0" expanded="true" />
               </folding>
@@ -968,8 +963,8 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/io/FileInputStream.java" />
     <entry file="file://$PROJECT_DIR$/src/Chapitre7.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
+        <state relative-caret-position="246">
+          <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
           <folding>
             <element signature="e#2107#2132#0" expanded="true" />
           </folding>

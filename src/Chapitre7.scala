@@ -148,6 +148,7 @@ object Chapitre7 {
 
     println("okkkkk")
 
+    // yield: permet de creer une collection a partir d'une boucle
     def makeRowSeq(row: Int) =
       for (col <- 1 to 10) yield{
         val prod = (row*col).toString
