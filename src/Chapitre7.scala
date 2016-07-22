@@ -158,6 +158,16 @@ object Chapitre7 {
 
     makeRowSeq(2).foreach(println)
 
+    def multiTable() = {
+      val tableSeq = for(row <- 1 to 10) yield {
+        makeRowSeq(row)
+      }
+      tableSeq.mkString("\n")
+    }
+
+    multiTable()
+
+
 
   }
 }
