@@ -53,9 +53,23 @@ object Chapitre8 {
     def somme (a: Int, b:Int, c:Int)= a+b+c
     println(somme(1,1,1))
 
-    // function value
+    // function value, instance d'une classe générée automatiquement par le compiler scala depuis sum _
+    // partially applied fonction
     val a = somme _
     println(a(10,10,10))
+    println(a.apply(10,10,10)) // identique ligne dessus
 
+    val b = somme(10,_:Int,10)
+    println(b(10)) // invoque somme(10,10,10)
+
+    val more = 10
+    def addOne (x: Int) = x+1 // closed term. ce n'est pas une closure
+    def addMore(x: Int) = x+more // open term. more est une free variable. le resultat de cette function value est une closure
+
+    println("______")
+    val liste0 = List(-10, -5, 0, 5, 10,1)
+    var sum = 0
+    liste0.foreach(sum+=_)
+    println("somme: "+sum)
   }
 }
