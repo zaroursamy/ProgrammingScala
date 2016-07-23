@@ -71,5 +71,30 @@ object Chapitre8 {
     var sum = 0
     liste0.foreach(sum+=_)
     println("somme: "+sum)
+    liste0.foreach(sum+=_)
+    println("somme deuxieme fois: "+sum)
+
+    def makeIncreaser(more: Int) = (x: Int) => x+more
+    val inc1 = makeIncreaser(1) // une closure qui capture la valeur 1 pour more est créée à l'invocation de makeIncreaser(1)
+    val inc2 = makeIncreaser(2)
+
+    println(inc1, inc2)
+    println(inc1(1), inc2(1))
+
+    println()
+
+    println("parametres repetes")
+    // parametres répétés: ajout d'uune * apres le type
+    def echo (args: String*) = args.foreach(x => print(x+" "))
+
+    echo()
+    echo ("wesh1")
+    // le type est un array de string
+    echo("wesh","ouesh","salut")
+
+    // impossible de faire echo(Array("salut","ca va")). pour ca il faut mettre un underscore!
+
+    echo(Array("salut2","ca va2"): _*) // la notation signifie de passer chaque element de l'array comme un element de echo
+
   }
 }
