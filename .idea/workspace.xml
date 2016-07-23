@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8054dc76-5591-4499-b99c-7020cdf8ef0c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$main$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$main$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$main$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$main$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$$anonfun$main$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$FindLongLines$$anonfun$processFile$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8$FindLongLines.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ProgrammingScala/Chapitre8.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Chapitre8.scala" afterPath="$PROJECT_DIR$/src/Chapitre8.scala" />
     </list>
     <ignored path="ProgrammingScala.iws" />
@@ -111,8 +99,8 @@
       <file leaf-file-name="Chapitre8.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Chapitre8.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="96" column="123" selection-start-line="96" selection-start-column="123" selection-end-line="96" selection-end-column="123" />
+            <state relative-caret-position="355">
+              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,8 +109,8 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-62">
-              <caret line="100" column="63" selection-start-line="100" selection-start-column="63" selection-end-line="100" selection-end-column="63" />
+            <state relative-caret-position="-113">
+              <caret line="88" column="63" selection-start-line="88" selection-start-column="63" selection-end-line="88" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -1021,16 +1009,16 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/lang/String.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="100" column="63" selection-start-line="100" selection-start-column="63" selection-end-line="100" selection-end-column="63" />
+        <state relative-caret-position="-113">
+          <caret line="88" column="63" selection-start-line="88" selection-start-column="63" selection-end-line="88" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Chapitre8.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="96" column="123" selection-start-line="96" selection-start-column="123" selection-end-line="96" selection-end-column="123" />
+        <state relative-caret-position="355">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding />
         </state>
       </provider>

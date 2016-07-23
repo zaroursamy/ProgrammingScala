@@ -96,5 +96,11 @@ object Chapitre8 {
 
     echo(Array("salut2","ca va2"): _*) // la notation signifie de passer chaque element de l'array comme un element de echo
 
+    println()
+    def vitesse(dist: Float, temps: Float ): Float = dist/temps
+
+    println(vitesse(130,2), vitesse(dist = 130, temps = 2), vitesse(temps = 2, dist = 130))
+
+
   }
 }
