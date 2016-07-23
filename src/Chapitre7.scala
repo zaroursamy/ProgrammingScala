@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 17/07/2016.
   */
-object Chapitre7 {
+class Chapitre7 {
 
   val filesHere2 = (new java.io.File("D:\\Data de C\\Documents de C")).listFiles()
   val filesHere = (new java.io.File("C:\\Users\\Samy\\IdeaProjects\\ProgrammingScala\\src")).listFiles()
@@ -146,7 +146,27 @@ object Chapitre7 {
     println(testScope)
 
 
-  println("okkkkk")
+    println("okkkkk")
+
+    // yield: permet de creer une collection a partir d'une boucle
+    def makeRowSeq(row: Int) =
+      for (col <- 1 to 10) yield{
+        val prod = (row*col).toString
+        val padding = " " * (4-prod.length)
+        padding + prod
+      }
+
+    makeRowSeq(2).foreach(println)
+
+    def multiTable() = {
+      val tableSeq = for(row <- 1 to 10) yield {
+        makeRowSeq(row)
+      }
+      tableSeq.mkString("\n")
+    }
+
+    multiTable()
+
 
 
   }
