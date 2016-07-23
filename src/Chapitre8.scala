@@ -1,7 +1,7 @@
 /**
   * Created by Samy.Zarour on 22/07/2016.
   */
-object Chapitre8 {
+class Chapitre8 {
 
   // metohde = fonction membre d'un object
   import scala.io.Source
@@ -64,6 +64,7 @@ object Chapitre8 {
 
     val more = 10
     def addOne (x: Int) = x+1 // closed term. ce n'est pas une closure
+    // une fonction value qui capture une free variable est une closure
     def addMore(x: Int) = x+more // open term. more est une free variable. le resultat de cette function value est une closure
 
     println("______")
@@ -101,6 +102,49 @@ object Chapitre8 {
 
     println(vitesse(130,2), vitesse(dist = 130, temps = 2), vitesse(temps = 2, dist = 130))
 
+    // tail recursion
+    def isGoodEnough(guess: Double): Boolean = {
+      if(guess <= 1.96 && guess >= -1.96) true
+      else false
+    }
 
+    def improve(guess: Double): Double = guess/2
+
+    // ce genre de fonction, qui s'appelle elle meme a la fin, est dite tail recursive
+    def approximate(guess: Double): Double ={
+      if(isGoodEnough(guess)) guess
+      else approximate(improve(guess))
+    }
+
+    println(approximate(40.0))
+
+    // pas recursive, car il y a le +1 a la fin: elle ne s'appelle pas 'que' elle meme
+    def boom(x: Int): Int = {
+      if(x == 0) throw new Exception("boom !")
+      else boom(x-1)+1
+    }
+
+    // ici on observe 5 lignes ou la faute est écrite
+    //boom(5)
+
+    // ici, la fonction est recursive et scala fait l'optimisation tail call
+    def bang(x: Int): Int = {
+      if(x == 0) throw new Exception("bang !")
+      else bang(x-1)
+    }
+
+    // alors qu'ici une seule ligne est écrite
+    //bang(5)
+
+    // exemples de fonctions récursives qui ne sont pas optimisées, car indirectes :
+    def isEven(x: Int): Boolean =
+    if (x == 0) true else isOdd(x - 1)
+    def isOdd(x: Int): Boolean =
+      if (x == 0) false else isEven(x - 1)
+
+    val funValue = nestedFun _
+    def nestedFun(x: Int) {
+      if (x != 0) { println(x); funValue(x - 1) }
+    }
   }
 }
