@@ -142,9 +142,10 @@ class Chapitre8 {
     def isOdd(x: Int): Boolean =
       if (x == 0) false else isEven(x - 1)
 
-    val funValue = nestedFun _
-    def nestedFun(x: Int) {
-      if (x != 0) { println(x); funValue(x - 1) }
-    }
+//    def nestedFun(x: Int) {
+//      if (x != 0) { println(x); funValue(x - 1) }
+//    }
+//    val funValue = nestedFun _
+//
   }
 }
