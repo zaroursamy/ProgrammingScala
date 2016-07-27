@@ -20,6 +20,8 @@ object Chapitre9 {
   def addCurryied(x: Int)(y: Int) = x+y
   def addNoCurryied(x:Int, y:Int) = x+y
 
+  def twice(op: Double => Double, x: Int) = op(op(x))
+
 
   // on souhaite généraliser maintenant, en passant nimporte quelle methode en parametre
 
