@@ -2,6 +2,8 @@
   * Created by Samy on 24/07/2016.
   */
 object Chapitre9 {
+  // control abstraction
+
 
   private def filesHere = (new java.io.File("C:\\Users\\Samy\\IdeaProjects\\ProgrammingScala\\src")).listFiles
 
@@ -14,6 +16,10 @@ object Chapitre9 {
   def filesContaining(query: String) = filesMatching(_.contains(query))
 
   def filesRegex(query: String) = filesMatching(_.matches(query))
+
+  def addCurryied(x: Int)(y: Int) = x+y
+  def addNoCurryied(x:Int, y:Int) = x+y
+
 
   // on souhaite généraliser maintenant, en passant nimporte quelle methode en parametre
 
@@ -32,5 +38,12 @@ object Chapitre9 {
     //filesMatching("3", (x,y) => x.contains(y)).foreach(println)
     // filesMatching("Chapitre9.scala", _.endsWith(_)).foreach(println)
     println(List(1,2,3,-2,4,8,-6).exists(_<0))
+    println("Curryfication-------------------------")
+    println(addCurryied(3)(4))
+    println(addNoCurryied(3,4))
+
+    val onePlus = addCurryied(1)_
+    println(onePlus)
+    println(onePlus(1))
   }
 }
