@@ -1,3 +1,5 @@
+import java.io.PrintWriter
+
 /**
   * Created by Samy on 24/07/2016.
   */
@@ -21,6 +23,18 @@ object Chapitre9 {
   def addNoCurryied(x:Int, y:Int) = x+y
 
   def twice(op: Double => Double, x: Int) = op(op(x))
+
+  import java.io.File
+  def withWriterPrinter(file: File, op: PrintWriter => Unit )= {
+
+    val writer = new PrintWriter(file)
+    try{
+      op(writer)
+    }
+    finally {
+      writer.close()
+    }
+  }
 
 
   // on souhaite généraliser maintenant, en passant nimporte quelle methode en parametre
