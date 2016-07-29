@@ -11,7 +11,7 @@ class Chapitre8 {
 
       // on implémente une fnction dans une fonction, au lieu d'en faire une méthode privée
       // elle a accès aux parametres de la fonction globale
-       def processLine(line: String) ={
+      def processLine(line: String) ={
         if(line.length > width) println(filename+" "+line.trim)
       }
 
@@ -21,10 +21,10 @@ class Chapitre8 {
     }
 
 
-//    def main(args: Array[String]) {
-//      val width = args(0).toInt
-//      for(x <- args.drop(1)) processFile(x, width)
-//    }
+    //    def main(args: Array[String]) {
+    //      val width = args(0).toInt
+    //      for(x <- args.drop(1)) processFile(x, width)
+    //    }
 
   }
 
@@ -138,14 +138,14 @@ class Chapitre8 {
 
     // exemples de fonctions récursives qui ne sont pas optimisées, car indirectes :
     def isEven(x: Int): Boolean =
-    if (x == 0) true else isOdd(x - 1)
+      if (x == 0) true else isOdd(x - 1)
     def isOdd(x: Int): Boolean =
       if (x == 0) false else isEven(x - 1)
 
-//    def nestedFun(x: Int) {
-//      if (x != 0) { println(x); funValue(x - 1) }
-//    }
-//    val funValue = nestedFun _
-//
+    //    def nestedFun(x: Int) {
+    //      if (x != 0) { println(x); funValue(x - 1) }
+    //    }
+    //    val funValue = nestedFun _
+    //
   }
 }
