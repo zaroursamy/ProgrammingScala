@@ -87,12 +87,24 @@ object Chapitre9 {
     // by-name parameters
     println("by name parameters")
     var assertionEnabled = true
+
     def myAssert(predicate: () => Boolean) = if(assertionEnabled && !predicate()) throw new AssertionError
 
-    println(()=>5>3)
+    // predicate: =>Boolean, 5>3 n'est pas évalué avant l'appel de bynameAssert. Une fonction value est appelée, avec apply, pour évaluer 5>3
+    def bynameAssert(predicate: => Boolean) = if(assertionEnabled && !predicate) throw new AssertionError
 
+    // predicate:Boolean donc 5>3 est évalué avant l'appel de boolAssert
+    def boolAssert(predicate: Boolean) = if(assertionEnabled && !predicate) throw new AssertionError
 
+    println(myAssert(() => 5>3))
+    println(bynameAssert(5>3))
+    println(boolAssert(5>3))
 
+    assertionEnabled = false
+//    println("boolAssert:")
+//    boolAssert(3/0 == 0) // arithmetiexception
+    println("bynameAssert:")
+    bynameAssert(3/0 == 0) // pas d'exception
 
   }
 }
