@@ -1,7 +1,7 @@
 /**
   * Created by Samy.Zarour on 29/07/2016.
   */
-class Chapitre10 {
+object Chapitre10 {
 
   // abstract class: signifie que la classe peut avoir des méthodes non implémentées.
   // on ne peut pas l'instantcier
@@ -22,5 +22,9 @@ class Chapitre10 {
 
     val height = contents.length
     val weight = if(height != 0) contents(0).length else 0
+
+    def main(args: Array[String]): Unit = {
+      
+    }
   }
 }
