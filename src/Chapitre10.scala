@@ -21,12 +21,47 @@ object Chapitre10 {
   }//end abstract class Element
 
   // hérite des membres non privés, et fait du type ArrayElement un sous type de Element
-  class ArrayElement(conts: Array[String]) extends Element{
-    def contents: Array[String] = conts // implements/override
+//  class ArrayElement(conts: Array[String]) extends Element{
+//    def contents: Array[String] = conts // implements/override
+//
+//    // on peut egalement definir une val du meme nom. on peut overrider une methode parameterless avec une val
+//    //val contents = conts
+//  }
+
+  // on peut réduire la classe du dessus et simplifier le code ainsi:
+  class ArrayElement(
+                    val contents: Array[String] // definit un parametre et un attribut (field)
+                    ) extends Element
+  /* equivalent a class ArrayElement(x123: Array[String]) extends Element{
+   val contents: Array[String] = x123
+   }*/
+
+
+  class Cat(
+           val dangerous: Boolean = false
+           )
+
+  class Tiger(
+             override val dangerous: Boolean = true,
+             private var age: Int
+
+
+             ) extends Cat
+
+  /*
+  class Tiger(p1: Boolean, p2: Int) extends Cat {
+    override val dangerous = p1
+    private var age = p2
   }
+   */
+
 
   def main(args: Array[String]): Unit = {
     val a = new ArrayElement(Array("salut", "ca va ?"))
-    println(a+" "+a.width)
+    println("a: "+ a+" "+a.width)
+
+    // toujours du type ArrayElement
+    val e: Element = new ArrayElement(Array("Element d\'arrayelement"))
+    println("e: "+ e+" "+e.width)
   }
 }
