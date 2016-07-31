@@ -39,6 +39,7 @@ object Chapitre10 {
 
   class Cat(
            val dangerous: Boolean = false
+
            )
 
   class Tiger(
@@ -54,9 +55,16 @@ object Chapitre10 {
   }
    */
 
+  /*
   class LineElement(s: String) extends ArrayElement(Array(s)) { // superclass constructor
     override def width = s.length
     override def height  = 1
+  }*/
+
+  class LineElement(s: String) extends Element{
+    val contents: Array[String] = Array(s)
+    override def width = s.length
+    override def height = 1
   }
 
   class UniformElement(
@@ -72,9 +80,13 @@ object Chapitre10 {
     def demo(){println("Un")}
   }
 
-  class Deux extends Un{
+  class Deux
+    extends Un{
     override def demo(){println("Un+Un")}
+    final def demoDeux(){println("demo2")} // on ne peut pâs overrider un final
   }
+
+  class Dos extends Deux
 
   class Uno extends Un
 
@@ -87,7 +99,7 @@ object Chapitre10 {
     println("e: "+ e+" "+e.width)
 
     val e1: Element = new ArrayElement(Array("hello", "world"))
-    val ae: ArrayElement = new LineElement("hello")
+    val ae: Element = new LineElement("hello")
     val e2: Element = ae
     val e3: Element = new UniformElement('x', 2, 3)
     println(e1, ae, e2, e3)
