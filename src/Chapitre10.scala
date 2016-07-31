@@ -9,14 +9,14 @@ object Chapitre10 {
 
     // pas de liste de parametre ! ( ie def height():Int ) : parameterless method. il faut qu'il n'y ai pas de param et qu'elle ne change pas d'etat des mutables
     def contents: Array[String]
-   // def height: Int = contents.length
-   // def weight: Int = if(height != 0) contents(0).length else 0
+    def height: Int = contents.length
+    def width: Int = if(height != 0) contents(0).length else 0
 
     // mais on peut les mettre sous forme de var: plus rapide , car pré calculé à l'initialisation de la classe,
     // au lieu detre calcule a chaque fois que la classe est appelée. MAIS les fields prennent plus de place en mémoire
 
-    val height = contents.length
-    val width = if(height != 0) contents(0).length else 0
+    //val height = contents.length
+    //val width = if(height != 0) contents(0).length else 0
 
   }//end abstract class Element
 
@@ -45,7 +45,6 @@ object Chapitre10 {
              override val dangerous: Boolean = true,
              private var age: Int
 
-
              ) extends Cat
 
   /*
@@ -55,13 +54,53 @@ object Chapitre10 {
   }
    */
 
+  class LineElement(s: String) extends ArrayElement(Array(s)) { // superclass constructor
+    override def width = s.length
+    override def height  = 1
+  }
+
+  class UniformElement(
+                        ch: Char,
+                        override val width: Int,
+                        override val height: Int
+                      ) extends Element {
+    private val line = ch.toString * width
+    def contents = Array.fill(height)(line)
+  }
+
+  abstract class Un{
+    def demo(){println("Un")}
+  }
+
+  class Deux extends Un{
+    override def demo(){println("Un+Un")}
+  }
+
+  class Uno extends Un
 
   def main(args: Array[String]): Unit = {
     val a = new ArrayElement(Array("salut", "ca va ?"))
     println("a: "+ a+" "+a.width)
 
-    // toujours du type ArrayElement
+    // toujours du type ArrayElement: polymorphisme
     val e: Element = new ArrayElement(Array("Element d\'arrayelement"))
     println("e: "+ e+" "+e.width)
+
+    val e1: Element = new ArrayElement(Array("hello", "world"))
+    val ae: ArrayElement = new LineElement("hello")
+    val e2: Element = ae
+    val e3: Element = new UniformElement('x', 2, 3)
+    println(e1, ae, e2, e3)
+    println()
+
+    def invocationDemo(e: Un): Unit ={
+      e.demo()
+    }
+
+    // invoque l'implementation de Deux
+    invocationDemo(new Deux)
+    // appelle celle de Un car Uno n'override pas la methode demo
+    invocationDemo(new Uno)
+
   }
 }
