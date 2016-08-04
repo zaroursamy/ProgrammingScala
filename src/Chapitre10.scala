@@ -19,13 +19,21 @@ object Chapitre10 {
       new ArrayElement(this.contents++e.contents)
     }
 
-    def beside(e: Element): Element ={
+    def besideImperative(e: Element): Element ={
       val c = new Array[String](e.contents.length)
 
       for(i <- 0 until c.length) c(i) = e.contents(i) + this.contents(i)
 
       new ArrayElement(c)
     }
+
+    def beside(e: Element): Element = new ArrayElement(
+      for(
+        (line1, line2) <- this.contents zip e.contents // définit deux vals, une pour chaque element
+      ) yield line1+line2
+    )
+
+    override def toString: String = contents mkString "\n"
 
     // mais on peut les mettre sous forme de var: plus rapide , car pré calculé à l'initialisation de la classe,
     // au lieu detre calcule a chaque fois que la classe est appelée. MAIS les fields prennent plus de place en mémoire
