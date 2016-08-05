@@ -52,6 +52,21 @@ object Chapitre10 {
 
     def elem(s: String): Element = new LineElement(s)
 
+
+    private class LineElement(s: String) extends Element{
+      val contents: Array[String] = Array(s)
+      override def width = s.length
+      override def height = 1
+    }
+
+    private class UniformElement(ch: Char, override val width: Int, override val height: Int) extends Element {
+      private val line = ch.toString * width
+      def contents = Array.fill(height)(line)
+    }
+
+    private class ArrayElement(val contents: Array[String]) extends Element // definit un parametre et un attribut (field)
+
+
   }
   // hérite des membres non privés, et fait du type ArrayElement un sous type de Element
 //  class ArrayElement(conts: Array[String]) extends Element{
@@ -62,9 +77,7 @@ object Chapitre10 {
 //  }
 
   // on peut réduire la classe du dessus et simplifier le code ainsi:
-  class ArrayElement(
-                    val contents: Array[String] // definit un parametre et un attribut (field)
-                    ) extends Element
+
   /* equivalent a class ArrayElement(x123: Array[String]) extends Element{
    val contents: Array[String] = x123
    }*/
@@ -94,20 +107,7 @@ object Chapitre10 {
     override def height  = 1
   }*/
 
-  class LineElement(s: String) extends Element{
-    val contents: Array[String] = Array(s)
-    override def width = s.length
-    override def height = 1
-  }
 
-  class UniformElement(
-                        ch: Char,
-                        override val width: Int,
-                        override val height: Int
-                      ) extends Element {
-    private val line = ch.toString * width
-    def contents = Array.fill(height)(line)
-  }
 
   abstract class Un{
     def demo(){println("Un")}
@@ -124,19 +124,19 @@ object Chapitre10 {
   class Uno extends Un
 
   def main(args: Array[String]): Unit = {
-    val a = new ArrayElement(Array("salut", "ca va ?"))
-    println("a: "+ a+" "+a.width)
-
-    // toujours du type ArrayElement: polymorphisme
-    val e: Element = new ArrayElement(Array("Element d\'arrayelement"))
-    println("e: "+ e+" "+e.width)
-
-    val e1: Element = new ArrayElement(Array("hello", "world"))
-    val ae: Element = new LineElement("hello")
-    val e2: Element = ae
-    val e3: Element = new UniformElement('x', 2, 3)
-    println(e1, ae, e2, e3)
-    println()
+//    val a = new ArrayElement(Array("salut", "ca va ?"))
+//    println("a: "+ a+" "+a.width)
+//
+//    // toujours du type ArrayElement: polymorphisme
+//    val e: Element = new ArrayElement(Array("Element d\'arrayelement"))
+//    println("e: "+ e+" "+e.width)
+//
+//    val e1: Element = new ArrayElement(Array("hello", "world"))
+//    val ae: Element = new LineElement("hello")
+//    val e2: Element = ae
+//    val e3: Element = new UniformElement('x', 2, 3)
+//    println(e1, ae, e2, e3)
+//    println()
 
     def invocationDemo(e: Un): Unit ={
       e.demo()
@@ -147,7 +147,11 @@ object Chapitre10 {
     // appelle celle de Un car Uno n'override pas la methode demo
     invocationDemo(new Uno)
 
-
+//    println()
+//    println("------------------------beside above 10.14---------------------")
+//    println("beside :\n",new ArrayElement(Array("hello")) above new ArrayElement(Array("world!")))
+//    println("above :\n", new ArrayElement(Array("hello ", "wonderful ", " !!! ")) beside new ArrayElement(Array("my ","world ")))
+//
 
   }
 }
