@@ -43,6 +43,16 @@ object Chapitre10 {
 
   }//end abstract class Element
 
+  // grace a la factory method, on peut cacher les sous classes
+  object Element{
+
+    def elem(contents: Array[String]): Element = new ArrayElement(contents)
+
+    def elem(c: Char, width: Int, height: Int): Element = new UniformElement(c, width, height)
+
+    def elem(s: String): Element = new LineElement(s)
+
+  }
   // hérite des membres non privés, et fait du type ArrayElement un sous type de Element
 //  class ArrayElement(conts: Array[String]) extends Element{
 //    def contents: Array[String] = conts // implements/override
