@@ -5,6 +5,8 @@ object Chapitre10 {
 
   // abstract class: signifie que la classe peut avoir des méthodes non implémentées.
   // on ne peut pas l'instantcier
+
+  import Element.elem
   abstract class Element{
 
     // pas de liste de parametre ! ( ie def height():Int ) : parameterless method. il faut qu'il n'y ai pas de param et qu'elle ne change pas d'etat des mutables
@@ -12,26 +14,50 @@ object Chapitre10 {
     def height: Int = contents.length
     def width: Int = if(height != 0) contents(0).length else 0
 
-    // above beside et toString
+    // entoure de blanc horizontalement
+    def widen(w: Int): Element =
+      if (w <= width) this
+      else {
+        val left = elem(' ', (w - width) / 2, height)
+        var right = elem(' ', w - width - left.width, height)
+        left beside this beside right
+      }
 
-    // above
-    def above (e: Element): Element = {
-      new ArrayElement(this.contents++e.contents)
+    // entoure de blanc verticalement
+    def heighten(h: Int): Element =
+      if (h <= height) this
+      else {
+        val top = elem(' ', width, (h - height) / 2)
+        var bot = elem(' ', width, h - height - top.height)
+        top above this above bot
+      }
+
+    def above(that: Element): Element = {
+      val this1 = this widen that.width
+      val that1 = that widen this.width
+      elem(this1.contents ++ that1.contents)
     }
 
-    def besideImperative(e: Element): Element ={
-      val c = new Array[String](e.contents.length)
+//    def besideImperative(e: Element): Element ={
+//      val c = new Array[String](e.contents.length)
+//
+//      for(i <- 0 until c.length) c(i) = e.contents(i) + this.contents(i)
+//
+//      elem(c)
+//    }
 
-      for(i <- 0 until c.length) c(i) = e.contents(i) + this.contents(i)
-
-      new ArrayElement(c)
+//    def beside1(e: Element): Element = elem(
+//      for(
+//        (line1, line2) <- this.contents zip e.contents // définit deux vals, une pour chaque element
+//      ) yield line1+line2
+//    )
+    def beside(that: Element): Element = {
+      val this1 = this heighten that.height
+      val that1 = that heighten this.height
+      elem(
+        for ((line1, line2) <- this1.contents zip that1.contents)
+          yield line1 + line2)
     }
-
-    def beside(e: Element): Element = new ArrayElement(
-      for(
-        (line1, line2) <- this.contents zip e.contents // définit deux vals, une pour chaque element
-      ) yield line1+line2
-    )
 
     override def toString: String = contents mkString "\n"
 
@@ -61,7 +87,7 @@ object Chapitre10 {
 
     private class UniformElement(ch: Char, override val width: Int, override val height: Int) extends Element {
       private val line = ch.toString * width
-      def contents = Array.fill(height)(line)
+      def contents = Array.fill(height)(line) // array à height element remplit de la valeur line
     }
 
     private class ArrayElement(val contents: Array[String]) extends Element // definit un parametre et un attribut (field)
@@ -153,5 +179,31 @@ object Chapitre10 {
 //    println("above :\n", new ArrayElement(Array("hello ", "wonderful ", " !!! ")) beside new ArrayElement(Array("my ","world ")))
 //
 
+   println("---------")
+
+    println("Element")
+    val uniform = elem('p',2,3)
+    println(uniform)
+    val array = elem(Array("hello","world"))
+    println(array)
+    val line = elem("que pasa")
+    println(line)
+
+    println(uniform.widen(4))
+    println("hiden widen----------------")
+    println
+    println("///////")
+    println(uniform.widen(1))
+    println("///////")
+    println(uniform.widen(20))
+    println("******")
+    println(uniform.heighten(5))
+    println("******")
+    println(uniform.heighten(10))
+    println(array.heighten(2))
+    println("uuuuuuuuuuuuuuuuuuuu")
+    println(array.heighten(10))
+    println("yyyyyyyyyyyyyyyyyyyyyyy")
+    println(line.widen(20))
   }
 }
