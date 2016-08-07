@@ -91,8 +91,6 @@ object Chapitre10 {
     }
 
     private class ArrayElement(val contents: Array[String]) extends Element // definit un parametre et un attribut (field)
-
-
   }
   // hérite des membres non privés, et fait du type ArrayElement un sous type de Element
 //  class ArrayElement(conts: Array[String]) extends Element{
@@ -107,13 +105,10 @@ object Chapitre10 {
   /* equivalent a class ArrayElement(x123: Array[String]) extends Element{
    val contents: Array[String] = x123
    }*/
-
-
   class Cat(
            val dangerous: Boolean = false
 
            )
-
   class Tiger(
              override val dangerous: Boolean = true,
              private var age: Int
@@ -133,21 +128,36 @@ object Chapitre10 {
     override def height  = 1
   }*/
 
-
-
   abstract class Un{
     def demo(){println("Un")}
   }
-
   class Deux
     extends Un{
     override def demo(){println("Un+Un")}
     final def demoDeux(){println("demo2")} // on ne peut pâs overrider un final
   }
-
   class Dos extends Deux
-
   class Uno extends Un
+
+  object Spiral{
+    val space = elem(" ")
+    val corner = elem("+")
+
+    def spiral(nbEdges: Int, direction: Int): Element = {
+      if(nbEdges == 1) elem("+")
+      else{
+        val sp = spiral(nbEdges-1, (direction+3) % 4)
+        def verticalBar = elem('|', 1, sp.height)
+        def horizontalBar = elem('-',sp.width, 1)
+        direction match{
+          case 0 => (corner beside horizontalBar) above (sp beside space)
+          case 1 => (sp above space) beside (corner above verticalBar)
+          case 2 => (space beside sp) above (horizontalBar beside corner)
+          case _ => (verticalBar above corner) beside (space above sp)
+        }
+      }
+    }
+  }
 
   def main(args: Array[String]): Unit = {
 //    val a = new ArrayElement(Array("salut", "ca va ?"))
@@ -205,5 +215,16 @@ object Chapitre10 {
     println(array.heighten(10))
     println("yyyyyyyyyyyyyyyyyyyyyyy")
     println(line.widen(20))
+    println("******************")
+    println(elem('|',1,5))
+    println(elem('-',5, 1).widen(10))
+    println("________________________")
+    println(elem("+") beside elem('|',1, 10))
+    println()
+    println(elem("+") beside elem('-', 10, 1) above elem('*',1,13))
+
+    println("spirale : ")
+    val a = Spiral
+    println(a.spiral(15, 3))
   }
 }
