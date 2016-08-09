@@ -2,7 +2,7 @@
 /**
   * Created by Samy on 14/07/2016.
   */
-class Chapitre4 {
+object Chapitre4 {
 
 
   class ChecksumAccumulator {

@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 15/07/2016.
   */
-class Chapitre5 {
+object Chapitre5 {
   // byte < short < int < long < float < double
 
   def main(args: Array[String]): Unit = {

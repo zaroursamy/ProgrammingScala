@@ -1,7 +1,7 @@
 /**
   * Created by Samy.Zarour on 22/07/2016.
   */
-class Chapitre8 {
+object Chapitre8 {
 
   // metohde = fonction membre d'un object
   import scala.io.Source

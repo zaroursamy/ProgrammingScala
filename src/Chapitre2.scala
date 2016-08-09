@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 04/07/2016.
   */
-class Chapitre2 {
+object Chapitre2 {
   def main(args: Array[String]) {
 
     val msg = "c'est bientôt la fin du ramadan"

@@ -1,7 +1,7 @@
 /**
   * Created by Samy on 17/07/2016.
   */
-class Chapitre7 {
+object Chapitre7 {
 
   val filesHere2 = (new java.io.File("D:\\Data de C\\Documents de C")).listFiles()
   val filesHere = (new java.io.File("C:\\Users\\Samy\\IdeaProjects\\ProgrammingScala\\src")).listFiles()

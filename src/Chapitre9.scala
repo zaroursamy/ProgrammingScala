@@ -3,7 +3,7 @@ import java.io.PrintWriter
 /**
   * Created by Samy on 24/07/2016.
   */
-class Chapitre9 {
+object Chapitre9 {
   // control abstraction
 
 
