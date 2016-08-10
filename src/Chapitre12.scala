@@ -5,6 +5,7 @@ object Chapitre12 {
 
 
 
+  // un trait n'a pas de parametre (pour le constructeur)
   trait Philosophical{
     def philosophize = println("That's my pihlo")
   }
@@ -13,7 +14,9 @@ object Chapitre12 {
     def legging = println("I've legs for walking dead")
   }
 
-  class Animal
+  class Animal {
+    override def toString: String = "Animals can think"
+  }
 
   class Bouddhiste extends Philosophical{
     override def toString: String = "Zen attitude"
@@ -21,7 +24,7 @@ object Chapitre12 {
 
   class Frog extends Animal with Philosophical with HasLeg{
     override def toString: String = "Croa croa i'm a philosopher animal with legs"
-    override def legging: String = "Croaaaaa I've two legs to jump"
+    override def legging: Unit = println("Croaaaaa I've two legs to jump")
   }
 
   def main(args: Array[String]): Unit = {
@@ -36,6 +39,13 @@ object Chapitre12 {
     println(philo_bouddha)
 
     println("La marque de bouddha froggée: ")
+    val frogPhilosopher: Philosophical = new Frog
+    println(frogPhilosopher)
+    frogPhilosopher.philosophize
+    println("La marque des jambes: ")
+    val frog_leg: HasLeg = new Frog
+    frog_leg.legging
+    println(frog_leg)
 
 
   }
