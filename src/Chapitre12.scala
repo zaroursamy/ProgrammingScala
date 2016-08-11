@@ -49,6 +49,41 @@ object Chapitre12 {
 
   }
 
+  // le trait Ordered
+  class Rationnal(n: Int, d: Int) extends Ordered[Rationnal]{
+
+    // declenche une exception
+    require(d != 0)
+
+    // attributs
+    val n1 = n / gcd(n.abs, d.abs)
+    val d1 = d / gcd(n.abs, d.abs)
+
+    // constructeur auxiliaire
+    def this(n: Int) = this(n, 1)
+
+    def * (x: Rationnal): Rationnal = new Rationnal(this.n1*x.n1, this.d1*x.d1)
+
+    def * (n: Int): Rationnal = new Rationnal(this.n1*n, this.d1)
+
+    private def gcd(a:Int, b:Int): Int ={
+      if(b == 0) a else gcd(b, a%b)
+    }
+
+    override def toString: String = n+"/"+d
+
+    def add(x: Rationnal): Rationnal = new Rationnal(n*x.d1+d*x.n1, d*x.d1)
+
+    def lessThan(x: Rationnal) = this.n1*x.d1 < this.d1*x.n1
+
+    def max(x: Rationnal) = if(lessThan(x)) x else this
+
+    // la methode doit retourner un Integer, 0 si idem, positif si le receiver est plus grand que le parametre, negatif sinon. Ordered n'implemente pas equals
+    def compare(that: Rationnal): Int = this.n1*that.d1 - this.d1*that.n1
+
+
+  }
+
   def main(args: Array[String]): Unit = {
 //    println("La marque de Bouddha: ")
 //    val bouddha = new Bouddhiste
@@ -68,11 +103,14 @@ object Chapitre12 {
 //    val frog_leg: HasLeg = new Frog
 //    frog_leg.legging
 //    println(frog_leg)
+//
+//    val rect = new Rectangle(new Point(0,1), new Point(1,0))
+//    println(rect.left, rect.right, rect.width)
 
-    val rect = new Rectangle(new Point(0,1), new Point(1,0))
-    println(rect.left, rect.right, rect.width)
-
-
+      val half = new Rationnal(1,2)
+      val third = new Rationnal(1,3)
+      println(half > third)
+    println(half == third)
 
 
   }
