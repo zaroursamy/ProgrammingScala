@@ -27,25 +27,52 @@ object Chapitre12 {
     override def legging: Unit = println("Croaaaaa I've two legs to jump")
   }
 
+
+  // rectangles et points
+  class Point(val x: Int, val y: Int)
+
+  trait Rectangular{
+    def topLeft: Point
+    def bottomRight: Point
+
+    def left = topLeft.x
+    def right = bottomRight.x
+    def width = right-left
+  }
+
+  abstract class Component extends Rectangular{
+
+  }
+
+
+  class Rectangle(val topLeft: Point, val bottomRight: Point) extends Rectangular{
+
+  }
+
   def main(args: Array[String]): Unit = {
-    println("La marque de Bouddha: ")
-    val bouddha = new Bouddhiste
-    bouddha.philosophize
-    println(bouddha)
+//    println("La marque de Bouddha: ")
+//    val bouddha = new Bouddhiste
+//    bouddha.philosophize
+//    println(bouddha)
+//
+//    println("La premiere marque de Bouddha: ")
+//    val philo_bouddha: Philosophical = bouddha // un trait definit aussi un type: on aurait pu l'instancier avec n'importe quel objet qui mixe Philosophical
+//    philo_bouddha.philosophize
+//    println(philo_bouddha)
+//
+//    println("La marque de bouddha froggée: ")
+//    val frogPhilosopher: Philosophical = new Frog
+//    println(frogPhilosopher)
+//    frogPhilosopher.philosophize
+//    println("La marque des jambes: ")
+//    val frog_leg: HasLeg = new Frog
+//    frog_leg.legging
+//    println(frog_leg)
 
-    println("La premiere marque de Bouddha: ")
-    val philo_bouddha: Philosophical = bouddha // un trait definit aussi un type: on aurait pu l'instancier avec n'importe quel objet qui mixe Philosophical
-    philo_bouddha.philosophize
-    println(philo_bouddha)
+    val rect = new Rectangle(new Point(0,1), new Point(1,0))
+    println(rect.left, rect.right, rect.width)
 
-    println("La marque de bouddha froggée: ")
-    val frogPhilosopher: Philosophical = new Frog
-    println(frogPhilosopher)
-    frogPhilosopher.philosophize
-    println("La marque des jambes: ")
-    val frog_leg: HasLeg = new Frog
-    frog_leg.legging
-    println(frog_leg)
+
 
 
   }
