@@ -103,6 +103,16 @@ object Chapitre12 {
 
   class MyQueue extends BasicIntQueue with Doubling
 
+  trait Incrementing extends IntQueue {
+    abstract override def put(x: Int) { super.put(x + 1) }
+  }
+
+  trait Filtering extends IntQueue {
+    abstract override def put(x: Int) {
+      if (x >= 0) super.put(x)
+    }
+  }
+
   def main(args: Array[String]): Unit = {
 //    println("La marque de Bouddha: ")
 //    val bouddha = new Bouddhiste
@@ -149,6 +159,41 @@ object Chapitre12 {
     val j = myq.get()
     println(j, myq)
 
+    val myq2 = new BasicIntQueue with Doubling
+    myq2.put(10)
+    myq2.put(20)
+    myq2.put(40)
+    val k = myq2.get()
+    println(k, myq2)
+
+    // la methode du trait le plus a droite est la premiere appelee ; Ici, d'abord Filtering, puis Incrementing
+    val myq3 = (new BasicIntQueue with Incrementing with Filtering)
+    myq3.put(-1) // filtre: -1<0 donc rien ne se passe
+    myq3.put(0) // filtre: 0>=0 donc incremente: ajoute 1
+    myq3.put(1) // filtre: 1>=0 donc incremente: ajoute 2
+    println(myq3.get(), myq3.get())
+
+    println("inversement")
+    val myq4 = (new BasicIntQueue with Filtering with Incrementing)
+    myq4.put(-1) // incremente: 0, filtre: ajoute 0
+    myq4.put(0) // incremente: 1, filtre: 1>0 donc ajoute 1
+    myq4.put(1) // incremente: 2, filtre: 2>0 donc ajoute 2
+    println(myq4.get(), myq4.get(), myq4.get())
+
+    println("freestyle")
+    val mq = (new BasicIntQueue with Incrementing with Filtering)
+    mq.put(-4)
+    mq.put(0)
+    mq.put(-10)
+    mq.put(-8)
+    mq.put(7)
+
+    println(mq.get(), mq.get())
+    println("----- with incrementing with doubling")
+    val mq2 = (new BasicIntQueue with Incrementing with Doubling)
+    mq2.put(1) // ajoute 3
+    mq2.put(10) // ajoute 21
+    println(mq2.get(), mq2.get())
 
   }
 }
