@@ -93,9 +93,15 @@ object Chapitre12 {
     val buf = new ArrayBuffer[Int]
     def get() = buf.remove(0)
     def put(x: Int) = buf+=x
-
-    override def toString: String = 
   }
+
+  // ce trait ne pourra etre mix in que par une classe qui extends IntQueue également
+  // abstract override car pour dire au compiler qu'on empile les modif sur la methode. le trait doit étendre une classe qui définit la methode
+  trait Doubling extends IntQueue{
+    abstract override def put(x: Int) = super.put(2*x)
+  }
+
+  class MyQueue extends BasicIntQueue with Doubling
 
   def main(args: Array[String]): Unit = {
 //    println("La marque de Bouddha: ")
@@ -132,6 +138,16 @@ object Chapitre12 {
     println(queue)
     val i = queue.get()
     println(i, queue)
+
+    val myq = new MyQueue
+
+    println("avec le trait Doubling: ")
+    myq.put(10)
+    myq.put(20)
+    myq.put(40)
+    println(myq)
+    val j = myq.get()
+    println(j, myq)
 
 
   }
