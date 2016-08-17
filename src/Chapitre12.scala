@@ -114,32 +114,32 @@ object Chapitre12 {
   }
 
   def main(args: Array[String]): Unit = {
-//    println("La marque de Bouddha: ")
-//    val bouddha = new Bouddhiste
-//    bouddha.philosophize
-//    println(bouddha)
-//
-//    println("La premiere marque de Bouddha: ")
-//    val philo_bouddha: Philosophical = bouddha // un trait definit aussi un type: on aurait pu l'instancier avec n'importe quel objet qui mixe Philosophical
-//    philo_bouddha.philosophize
-//    println(philo_bouddha)
-//
-//    println("La marque de bouddha froggée: ")
-//    val frogPhilosopher: Philosophical = new Frog
-//    println(frogPhilosopher)
-//    frogPhilosopher.philosophize
-//    println("La marque des jambes: ")
-//    val frog_leg: HasLeg = new Frog
-//    frog_leg.legging
-//    println(frog_leg)
-//
-//    val rect = new Rectangle(new Point(0,1), new Point(1,0))
-//    println(rect.left, rect.right, rect.width)
+    println("La marque de Bouddha: ")
+    val bouddha = new Bouddhiste
+    bouddha.philosophize
+    println(bouddha)
 
-//    val half = new Rationnal(1,2)
-//    val third = new Rationnal(1,3)
-//    println(half > third)
-//    println(half == third)
+    println("La premiere marque de Bouddha: ")
+    val philo_bouddha: Philosophical = bouddha // un trait definit aussi un type: on aurait pu l'instancier avec n'importe quel objet qui mixe Philosophical
+    philo_bouddha.philosophize
+    println(philo_bouddha)
+
+    println("La marque de bouddha froggée: ")
+    val frogPhilosopher: Philosophical = new Frog
+    println(frogPhilosopher)
+    frogPhilosopher.philosophize
+    println("La marque des jambes: ")
+    val frog_leg: HasLeg = new Frog
+    frog_leg.legging
+    println(frog_leg)
+
+    val rect = new Rectangle(new Point(0,1), new Point(1,0))
+    println(rect.left, rect.right, rect.width)
+
+    val half = new Rationnal(1,2)
+    val third = new Rationnal(1,3)
+    println(half > third)
+    println(half == third)
 
     val queue = new BasicIntQueue
     queue.put(10)
