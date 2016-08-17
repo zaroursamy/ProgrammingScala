@@ -82,7 +82,7 @@ object Chapitre13 {
       println("a "+name+" is "+color)
     }
 
-    import bobsdelights.Fruits._
-    showFruit1(new Apple)
+    val apple: Fruit = new Fruit("apple","green") {}
+    showFruit1(apple)
   }
 }
