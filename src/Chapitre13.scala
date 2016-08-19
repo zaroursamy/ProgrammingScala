@@ -1,4 +1,5 @@
 import bobsdelights.Fruit
+import bobsdelights.Fruits.Banana
 
 /**
   * Created by Samy on 17/08/2016.
@@ -69,6 +70,13 @@ package bobsdelights{
     val menu = List(Apple, Strawberry, Banana)
   }
 }
+
+import java.util.regex
+class AstarB{
+  val pat = regex.Pattern.compile("a*b")
+}
+
+
 object Chapitre13 {
 
 
@@ -84,5 +92,17 @@ object Chapitre13 {
 
     val apple: Fruit = new Fruit("apple","green") {}
     showFruit1(apple)
+
+    import bobsdelights.Fruits.{Banana}
+    val banane = Banana
+
+    import bobsdelights.Fruits.{Apple=>McIntosh}
+    val pomme = McIntosh
+
+    import java.sql.{Date => D}
+    println(D.valueOf("2000-11-01"))
+
+    import java.{sql => S}
+    println(S.Date.valueOf("2000-11-01"))
   }
 }
