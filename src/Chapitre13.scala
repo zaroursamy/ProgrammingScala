@@ -71,6 +71,10 @@ package bobsdelights{
   }
 }
 
+package Notebook{
+  object Apple
+}
+
 import java.util.regex
 class AstarB{
   val pat = regex.Pattern.compile("a*b")
@@ -99,10 +103,21 @@ object Chapitre13 {
     import bobsdelights.Fruits.{Apple=>McIntosh}
     val pomme = McIntosh
 
+    // on peut accéder à Date via D
     import java.sql.{Date => D}
     println(D.valueOf("2000-11-01"))
 
+    // on accede à sql via S
     import java.{sql => S}
     println(S.Date.valueOf("2000-11-01"))
   }
+
+  // on accede a tous les membres, mais rename Apple
+  import bobsdelights.Fruits.{Apple => MacIntosh, _}
+  val mac = MacIntosh
+  val banane = Banana
+
+  // tout sauf Apple
+  import bobsdelights.Fruits.{Apple => _, _}
+
 }
