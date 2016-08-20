@@ -156,6 +156,33 @@ object Rocket{
   def findStation() = {}
 
 }
+
+/**
+  * les packages object sont compilés dans des fichiers .class ds le repertoire du package 
+  */
+
+// on met les definitions dans le package objet. ces definitions seront membres du package lui meme
+package object bobsdelights {
+  def showFruit(fruit: Fruit) {
+    import fruit._
+    println(name +"s are "+ color)
+  }
+}
+
+// dans un autre fichier que le package object
+package printmenu{
+  import bobsdelights.Fruits
+  import bobsdelights.showFruit
+  object PrintMenu {
+    def main(args: Array[String]) {
+      for (fruit <- Fruits.menu) {
+        showFruit(fruit) // la méthode est dans le package objet
+      }
+    }
+  }
+}
+
+
 object Chapitre13 {
 
 
