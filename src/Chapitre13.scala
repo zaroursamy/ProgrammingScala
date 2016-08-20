@@ -1,6 +1,7 @@
 import bobsdelights.Fruit
 import bobsdelights.Fruits.Banana
 
+
 /**
   * Created by Samy on 17/08/2016.
   */
@@ -113,7 +114,17 @@ package bobsrockets{
       class LegOfJourney {
         private[Navigator] val distance = 100
       }
-      private[this] var speed = 200
+      // garantie que speed n'est pas visible dans tout autre objet de la meme classe (Navigator)
+      private[this] var speed = 200 // seulement au sein de Navigator, ie l'objet qui contient la définition de speed
+
+
+
+
+      val n = new Navigator
+      //val n1 = n.speed
+      // on neut peut pas faire n1.speed car private[this] => seulement accessible par this
+
+      val n2 = this.speed
     }
   }
   package launch {
@@ -124,6 +135,27 @@ package bobsrockets{
   }
 }
 
+/**
+  * une classe et son compagnon ont accès a leurs membres: un objet compagnon peut acceder a des membres privates de la classe et vice versa
+  * un singleton n'a pas de sous classes
+  */
+class Rocket{
+  import Rocket.fuel
+  private def canGoHomeAgain = fuel > 20 // fuel est privé dans le compagnon mais accessible dans la classe !
+}
+
+object Rocket{
+
+  private def fuel = 10
+
+  def chooseStrategy(r: Rocket) = {
+    if(fuel > 20) goHome() else findStation()
+  }
+
+  def goHome() = {}
+  def findStation() = {}
+
+}
 object Chapitre13 {
 
 
@@ -162,5 +194,8 @@ object Chapitre13 {
 
   // tout sauf Apple
   import bobsdelights.Fruits.{Apple => _, _}
+
+  import bobsrockets.navigation.Navigator
+
 
 }
