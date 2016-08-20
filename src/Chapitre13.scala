@@ -80,6 +80,49 @@ class AstarB{
   val pat = regex.Pattern.compile("a*b")
 }
 
+class Outer{
+  class Inner{
+    private def f(s: String) = println(s) // inaccessible en dehors de Inner
+    class OuterInner{
+      val f = f("oi")
+    }
+  }
+  //val g = (new Inner).f("g")
+}
+
+package Comics{
+
+  class SuperHero{
+    protected def f() = println("protecteur") // accessible seulement par les classe héritieres
+  }
+
+  class Hero extends SuperHero{
+    val g = f()
+  }
+
+  class Mechant{
+    //val m = (new SuperHero).f()
+    // en java ca aurait marché car dans le meme package
+  }
+}
+
+package bobsrockets{
+  package navigation {
+    private[bobsrockets] class Navigator { // la classe est visible pour tous les objets/classes contenus dans bobsrockets. tout code en dehors de bobsrockets ne peut pas y accéder
+      protected[navigation] def useStarChart() {}
+      class LegOfJourney {
+        private[Navigator] val distance = 100
+      }
+      private[this] var speed = 200
+    }
+  }
+  package launch {
+    import navigation._
+    object Vehicle {
+      private[launch] val guide = new Navigator // Vehicle est dans bobsrockets , et Navigator a un qualifier bobsrockets, donc accessible
+    }
+  }
+}
 
 object Chapitre13 {
 
