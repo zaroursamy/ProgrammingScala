@@ -1,7 +1,8 @@
 /**
   * Created by Samy on 20/08/2016.
   */
-object Chapitre14 {
+
+class Chapitre14 {
 
   // assert(cond) throw une exception si cond est F
   def main(args: Array[String]): Unit = {
