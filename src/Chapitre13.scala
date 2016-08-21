@@ -83,9 +83,9 @@ class AstarB{
 
 class Outer{
   class Inner{
-    private def f(s: String) = println(s) // inaccessible en dehors de Inner
+    private def f(s: String) = s // inaccessible en dehors de Inner
     class OuterInner{
-      val f = f("oi")
+      val f1: String = f("oi")
     }
   }
   //val g = (new Inner).f("g")
@@ -109,10 +109,10 @@ package Comics{
 
 package bobsrockets{
   package navigation {
-    private[bobsrockets] class Navigator { // la classe est visible pour tous les objets/classes contenus dans bobsrockets. tout code en dehors de bobsrockets ne peut pas y accéder
+    private[bobsrockets] class Navigatorr { // la classe est visible pour tous les objets/classes contenus dans bobsrockets. tout code en dehors de bobsrockets ne peut pas y accéder
       protected[navigation] def useStarChart() {}
       class LegOfJourney {
-        private[Navigator] val distance = 100
+        private[Navigatorr] val distance = 100
       }
       // garantie que speed n'est pas visible dans tout autre objet de la meme classe (Navigator)
       private[this] var speed = 200 // seulement au sein de Navigator, ie l'objet qui contient la définition de speed
@@ -120,7 +120,7 @@ package bobsrockets{
 
 
 
-      val n = new Navigator
+      val n = new Navigatorr
       //val n1 = n.speed
       // on neut peut pas faire n1.speed car private[this] => seulement accessible par this
 
@@ -130,7 +130,7 @@ package bobsrockets{
   package launch {
     import navigation._
     object Vehicle {
-      private[launch] val guide = new Navigator // Vehicle est dans bobsrockets , et Navigator a un qualifier bobsrockets, donc accessible
+      private[launch] val guide = new Navigatorr // Vehicle est dans bobsrockets , et Navigator a un qualifier bobsrockets, donc accessible
     }
   }
 }
@@ -158,7 +158,7 @@ object Rocket{
 }
 
 /**
-  * les packages object sont compilés dans des fichiers .class ds le repertoire du package 
+  * les packages object sont compilés dans des fichiers .class ds le repertoire du package
   */
 
 // on met les definitions dans le package objet. ces definitions seront membres du package lui meme
