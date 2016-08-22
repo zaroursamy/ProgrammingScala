@@ -35,6 +35,38 @@ object Chapitre15 {
       case BinOp("*", Number(1), e) => e
       case _ => expr
     }
+
+    // wildcard patterns
+    def pm1(expr: Expr) = expr match{
+      case BinOp(_,_,_) => println("binop")
+      case _ => println("autre")
+    }
+    pm1(mutation)
+    def pm2(expr: Expr) = expr match{
+      case BinOp(operateur, gauche, droite) => println("binop")
+      case _ => println("autre")
+    }
+    pm2(mutation)
+
+    // constant patterns
+    def pm3(x: Any) = x match{
+      case true => "vrai"
+      case "ok" => "ok !"
+      case 5 => "cinq"
+      case Nil => "liste vide"
+      case _ => "other"
+    }
+    println(pm3(5), pm3(6), pm3(Nil))
+
+    // variable pattern
+    def pm4(x: Any) = x match{
+      case 0 => "0"
+      case autre => "autre: "+autre
+    }
+
+    println(pm4(0) , pm4(List(1,2)))
+
+
   }
 
 
