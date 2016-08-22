@@ -27,6 +27,14 @@ object Chapitre15 {
 
     // on peut creer une modification de ce qu'on veut grace a copy()
     val mutation2 = mutation.copy(operator = "mutation2")
+
+    def simplifyNeutre(expr: Expr) = expr match {
+      case UnOp("-", UnOp("-", e)) => e // match ttes les valeurs de type UnOp ayant pr premier param "-" et pr second param  ttes les valeurs de type UnOp(...).."-" et e
+      case BinOp("+", Number(0), e) => e //* tous les arguments du constructeur sont des patterns
+      case BinOp("-", Number(0), e) => e
+      case BinOp("*", Number(1), e) => e
+      case _ => expr
+    }
   }
 
 
