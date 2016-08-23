@@ -66,6 +66,34 @@ object Chapitre15 {
 
     println(pm4(0) , pm4(List(1,2)))
 
+    import math.{E, Pi}
+    println(E match{
+      case Pi => "strange, Pi = "+Pi
+      case _ => "E not equal Pi"
+    })
+
+    val pi = Pi
+    println(E match{
+      case pi => "strange, Pi = "+pi
+      //case _ => "E not equal Pi"
+    })
+
+    // unreachable code.
+    // ecriture minuscule ! pattern matchable
+    println(E match{
+      case pi => "strange, Pi = "+pi
+      case _ => "E not equal pi"
+    })
+
+    // traiter un identifer minuscule comme une constante: tout identifier commencant par une minuscule fait reference a une variable matchable
+    // si on veut utiliser une variable en minuscule il faut ``
+    println(E match {
+      case `pi` => "strange math? Pi = "+ pi
+      case _ => "E not equal pi"
+    })
+
+
+
 
   }
 
