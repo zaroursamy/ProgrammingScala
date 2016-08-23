@@ -80,10 +80,10 @@ object Chapitre15 {
 
     // unreachable code.
     // ecriture minuscule ! pattern matchable
-    println(E match{
-      case pi => "strange, Pi = "+pi
-      case _ => "E not equal pi"
-    })
+//    println(E match{
+//      case pi => "strange, Pi = "+pi
+//      case _ => "E not equal pi"
+//    })
 
     // traiter un identifer minuscule comme une constante: tout identifier commencant par une minuscule fait reference a une variable matchable
     // si on veut utiliser une variable en minuscule il faut ``
@@ -92,6 +92,40 @@ object Chapitre15 {
       case _ => "E not equal pi"
     })
 
+    println(BinOp("+", Var("x"), Number(0)) match{
+      case BinOp("+",e,Number(0)) => e
+      case autre => autre
+    })
+
+    println(BinOp("+", Var("x"), Number(0)) match{
+      case BinOp(_,e,Number(0)) => e
+      case autre => autre
+    })
+
+    // sequence pattern
+
+    // match les liste de taille 3 commencant par 1
+    println(List(1,2,3) match {
+      case List(1,_,_) => "liste debut 1"
+      case _ => "autre"
+    })
+
+    // match les liste de n'importe quelle taille commencant par 1
+    println(List(2,3,54,654,654,654,654,651,321,987,321) match {
+      case List(1,_*) => "liste debut 1"
+      case _ => "autre"
+    })
+
+    // tuple patterns
+    def tupleDemo(t: Any) = t match{
+      case (x,y,z) => println("tuple: "+x+"+"+y+"+"+z)
+      case _ => println("autre tuple")
+    }
+
+
+    tupleDemo((1,2,3))
+    tupleDemo(List(1,2,3))
+    tupleDemo((1,2,3,4))
 
 
 
