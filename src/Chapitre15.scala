@@ -123,11 +123,57 @@ object Chapitre15 {
     }
 
 
-    tupleDemo((1,2,3))
+    tupleDemo((1,"okokokok", List(true, false)))
     tupleDemo(List(1,2,3))
     tupleDemo((1,2,3,4))
 
+    // type patterns
+    def taillePattern(x: Any): Int = x match{
+      case s: String => s.length
+      case l: List[_] => l.length
+      case _ => -1
+    }
 
+    def taillePattern2(x: Any): Int = x match{
+      case s: String => s.length
+      case l: List[a] => l.length
+      case _ => -1
+    }
+
+    println("taille pattern: ") // regarder la diff entre List[_] et List[a] !
+    println(taillePattern("hello"), taillePattern(List(1,2)), taillePattern(List("a","b")), taillePattern(Map(1->1)))
+    println(taillePattern2("hello"), taillePattern2(List(1,2)), taillePattern2(List("a","b")), taillePattern2(Map(1->1)))
+
+    println
+    println("cast: ")
+    // cast
+    val s: String = "hey"
+    println(s.isInstanceOf[String])
+
+    // erasure
+    def isIntList(x: Any) = x match{
+      case m: List[Int] => true
+      case _ => false
+    }
+
+    // on ne peut pas definit le type de la liste (ou de la map), on sait juste que c'est une lsite de qqch
+    println(isIntList(List(1,21)))
+    println(isIntList(List("a","adf"))) // renvoie true egalement !
+
+    // mais pour un array ca marche
+    def typeArray(x: Any) = x match{
+      case a: Array[String] => "array string"
+      case b: Array[Int] => "array int"
+      case _ => "autre chose"
+    }
+
+    println(typeArray(Array(1,2)), typeArray(Array("a")), typeArray(List(1)))
+
+    // variable binding
+    println(BinOp("+",UnOp("-", Number(0)), Number(1)) match {
+      case (BinOp(_, e @ UnOp("-", Number(0)), _)) => e
+      case _ => "autre"
+    })
 
   }
 
