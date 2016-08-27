@@ -7,12 +7,17 @@
   * supporte le pattern matching
   *
   * MAIS: classe et objets deviennent plus large a cause de l'ajout de methodes
+  *
+  * une classe selée peut etre heritee seulement par les classes du meme fichier
+  * utile pour le pattern matching: force a etre exhaustif
   */
-abstract class Expr
+sealed abstract class Expr
 case class Var(name: String) extends Expr
 case class Number(num: Double) extends Expr
 case class UnOp(operator: String, arg: Expr) extends Expr
 case class BinOp(operator: String, left: Expr, right: Expr) extends Expr
+
+
 
 object Chapitre15 {
 
@@ -213,6 +218,85 @@ object Chapitre15 {
     println("simplifyAll: \n")
     println(simplifyAll(UnOp("-", UnOp("-", Number(10)))))
 
+    println
+    println("sealed classes: \n")
+    // sealed classes
+
+    // compiler warning non exhaustif
+    def describeBad(x: Expr) = x match{
+      case Number(_) => "number"
+      case Var(_) => "var"
+    }
+    println(describeBad(Number(0)))
+    println(UnOp("-", Var("1")))
+
+    // deuxieme solution mais arete le compilo
+    def describeBad2(x: Expr) = x match{
+      case Number(_) => "number"
+      case Var(_) => "var"
+      case _ => throw new RuntimeException
+    }
+
+    // annotation
+    def describe(e: Expr): String = (e: @unchecked) match {
+      case Number(_) => "a number"
+      case Var(_) => "a variable"
+    }
+
+    // type Option
+    println
+    println("Option\n")
+    val capital = Map("france"->"paris", "italie"->"rome")
+    println(capital get "france", capital get "japon")
+
+    // on definit une methode pour la Map
+    def show(x: Option[String]) = x match {
+      case Some(a) => "capitale: "+a
+      case None => "capitale inconnue"
+    }
+
+    println(capital get "france")
+    println(show(capital get "france"), show(capital get "japon"))
+
+    println
+
+    // pattern en dehors de match
+    val myT = (10, "dix")
+    val (myTN, myTS) = myT
+    println(myTN, myTS)
+
+    // deconstruire une case class via un pattern
+    val binop: BinOp = BinOp("+",Number(1), Number(2))
+    val BinOp(operateur, gauche, droite) = binop
+
+    // la fonction value suivante va de Option[Int] vers Int
+    val withDefault: Option[Int] => Int = {
+      case Some(qqch) => qqch
+      case None => 0
+    }
+
+    println(withDefault(Some(1)), withDefault(None))
+
+    val divide: (Option[Int], Option[Int]) => String ={
+      case (Some(x), Some(y)) if y != 0 => "division bonne"
+      case _ => "division par 0"
+    }
+
+    println(divide(Some(1), Some(0)), divide(Some(1), Some(2)))
+
+    // une fonction partielle est une fonction qui n'est pas definie sur tout l'ensemble (ex: Int => Double = x/y pas definit en 0)
+    val secondeElem: PartialFunction[List[Int], Int] = {
+      case a::b::_ => b
+    }
+
+    println(secondeElem isDefinedAt List(), secondeElem isDefinedAt List(1), secondeElem isDefinedAt List(1,2,3))
+
+    // pattern dans un for
+    for((pays, ville) <- capital) print(pays, ville)
+
+    println
+    // si ca ne match pas le pattern alors c'est pas pris en compte:
+    for(Some(fruit) <- List(Some("banane "), Some("orange "), None, Some("framboise "))) print(fruit)
   }
 
 }
