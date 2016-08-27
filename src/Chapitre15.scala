@@ -194,6 +194,8 @@ object Chapitre15 {
     println(unGuardBizarre(("a", 4)), unGuardBizarre(1))
 
     // pattern overlaps
+    // ordre important : du plus au moins specifique
+
     def simplifyAll(expr: Expr): Expr = expr match {
       case UnOp("-", UnOp("-", e)) =>
         simplifyAll(e) // ‘-’ is its own inverse
