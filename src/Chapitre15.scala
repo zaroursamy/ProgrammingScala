@@ -54,7 +54,7 @@ class ExprFormatter {
           else s
         elem(stripDot(num.toString))
       case UnOp(op, arg) =>
-        elem(op) beside format(arg, unaryPrecedence)
+        elem(op) beside format(arg, unaryPrecedence) // operation + un display entre () et que arg=binop sans /
       case BinOp("/", left, right) =>
         val top = format(left, fractionPrecedence)
         val bot = format(right, fractionPrecedence)
@@ -62,7 +62,7 @@ class ExprFormatter {
         val frac = top above line above bot
         if (enclPrec != fractionPrecedence) frac
         else elem(" ") beside frac beside elem(" ")
-      case BinOp(op, left, right) =>
+      case BinOp(op, left, right) => // ici ca ne peut pas etre une division car elle est traité avant
         val opPrec = precedence(op)
         val l = format(left, opPrec)
         val r = format(right, opPrec + 1)
@@ -94,6 +94,7 @@ object Chapitre15 {
       case BinOp("*", Number(1), e) => e
       case _ => expr
     }
+
 
     // wildcard patterns
     def pm1(expr: Expr) = expr match {
@@ -351,6 +352,15 @@ object Chapitre15 {
     println
     // si ca ne match pas le pattern alors c'est pas pris en compte:
     for(Some(fruit) <- List(Some("banane "), Some("orange "), None, Some("framboise "))) print(fruit)
+
+    val f = new ExprFormatter
+    val e1 = BinOp("*", BinOp("/", Number(1), Number(2)),
+      BinOp("+", Var("x"), Number(1)))
+    val e2 = BinOp("+", BinOp("/", Var("x"), Number(2)),
+      BinOp("/", Number(1.5), Var("x")))
+    val e3 = BinOp("/", e1, e2)
+    def showEx(e: Expr) = println(f.format(e)+ "\n\n")
+    for (e <- Array(e1, e2, e3)) showEx(e)
   }
 
 
