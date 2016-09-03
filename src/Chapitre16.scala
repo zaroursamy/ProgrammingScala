@@ -43,6 +43,11 @@ object Chapitre16 {
     case x::xs1 => insert(x, isortP(xs1))
   }
 
+  def rev[T](xs: List[T]): List[T] = xs match {
+    case Nil => xs
+    case x::xs1 => rev(xs1):::List(x)
+  }
+
   def main(args: Array[String]): Unit = {
     println(l1 == l11, l2 == l22, l3 == l33)
 
@@ -71,6 +76,13 @@ object Chapitre16 {
 
     // concatenation de listes
     println(List(1,2):::List(3,4,5):::List(10)) // equivalent a x:::(y:::z)
+
+    // operations sur les listes. tout comme tail et head , exception sur Nil.
+    // ont besoin de parcourir toute la liste
+    println("last ", List(1,2,3,4).last) // le dernier
+    println("init ", List(1,2,3,4).init) // tout sauf le dernier
+
+    println("reverse ", List(1,2,3,4).reverse) // ne modifie pas la liste d'origine mais cree une nouvelle instance
   }
 
 }
