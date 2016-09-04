@@ -6,6 +6,8 @@ object Chapitre16 {
   /**
     * les listes sont immutables et ont une sutrcture recursive (differences avec les array)
     * listes sont covariantes: S de type T alors List[S] de type List[T]
+    *
+    * fonction premier ordre : prend pas de fonction en parametre, contrairement aux fonctions d'ordre superieur
     */
 
   val l1: List[Int] = List(1,2,3)
@@ -68,6 +70,10 @@ object Chapitre16 {
 
   val intSort = msort((x:Int, y:Int) => x<y)_
   val intSortDecrease = msort((x:Int, y:Int) => x>y)_
+
+  def hasZeroRow(m: List[List[Int]]): Boolean = {
+    m exists (row => row forall (_==0))
+  }
 
   def main(args: Array[String]): Unit = {
     println(l1 == l11, l2 == l22, l3 == l33)
@@ -141,7 +147,57 @@ object Chapitre16 {
     println(msort((x: Int, y: Int) => x<y)(List(-1,2,-5,-6,70,54,-840)), intSort(List(1,0,-1)), intSortDecrease(List(-1,0,1)))
 
     println(intSort(List(-1,0,1)) == intSortDecrease(List(-1,0,1)).reverse)
-    
+
+    /*
+    fonctions map etc
+     */
+    println("\n-------- map etc -----------")
+    val li = List(-1,0,4,-8,-10,80)
+    val ls = List("orange","yellow","blue","red","brown","grey")
+
+    println(li map (_ +2), ls map  (_.length))
+    println(ls.map(_.reverse))
+
+    val ls_list = ls map (_.toList)
+    println("ls list: ", ls_list)
+    val ls_flatmap = ls.flatMap(_.toList)
+    println("ls flatmap: ", ls_flatmap)
+
+    val l = for(i <- List.range(1,5); j <- List.range(1,i)) yield (i,j)
+    println(l)
+    val ll = List.range(1,5).flatMap(i => List.range(1,i).map(j => (i,j)))
+    println(ll)
+
+    // foreach: prend une procédure (return Unit)
+    var sum = 0
+    List(1,2,3).foreach(sum+=_)
+    println(sum)
+
+    println("filter: ", List(-1,0,564,-81,987).filter(_>0), List(1,2,3).find(_<0))
+
+    //partition: premier element respecte le predicat, les autres non
+    println("partition: ", List(-1,0,564,-81,987).partition(_>0))
+
+    // find: retourne le premier element satisfaisant le predicat
+    println("find: ", List(-1,0,1,5).find(_<0), List(-1,0,1,9).find(_>0))
+
+    // takewhile et drop while: garde et supprime le plus long prefixe verifiant le predicat
+    println("takeWhile: ", List(-5,1,2,3,-5,-7,80).takeWhile(_>0))
+    println("drophile: ", List(-5,1,2,3,-5,-7,80).dropWhile(_>0))
+    println("dropWhile: ", List("ah","tah","tih","ahh","at","ta").dropWhile(_.startsWith("t")), List("tah","tih","ahh","at","ta").dropWhile(_.startsWith("t")))
+    //xs span p equals (xs takeWhile p, xs dropWhile p)
+    println("span: ", List(-5,1,2,3,-5,-7,80).span(_>0)) // combine take et drop while
+    println("span: ", List(-5,1,2,3,-5,-7,80).span(_<0))
+
+    // forall p: true si tous les elements satisfont p
+    println("forall : ", List(1,2).forall(_>0), List(1,-2).forall(_>0))
+
+    // exist: true si un element verifie p
+    println("exists: ", List(1,2,5,0,1) exists (_==0))
+
+    println("haszerorow", hasZeroRow(List(List(1,1,1), List(0,0,0))), hasZeroRow(List(List(1,0,1), List(2,3,1))))
+
+
   }
 
 }
