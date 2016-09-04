@@ -48,6 +48,27 @@ object Chapitre16 {
     case x::xs1 => rev(xs1):::List(x)
   }
 
+  // tri une liste en nlog(n) par split. Currification marche bien pour spécialisé des traitements
+  def msort[T](less: (T,T) => Boolean)(xs: List[T]): List[T] = {
+
+    def merge(xs: List[T], ys: List[T]): List[T] = (xs, ys) match{
+      case (Nil, _) => ys
+      case (_, Nil) => xs
+      case (x::xs1, y::ys1) => if(less(x,y)) x::merge(xs1, ys) else y::merge(xs, ys1)
+    }
+
+    val n = xs.length/2
+
+    if(n == 0) xs
+    else{
+      val (xs1, xs2) = xs splitAt n
+      merge(msort(less)(xs1), msort(less)(xs2))
+    }
+  }
+
+  val intSort = msort((x:Int, y:Int) => x<y)_
+  val intSortDecrease = msort((x:Int, y:Int) => x>y)_
+
   def main(args: Array[String]): Unit = {
     println(l1 == l11, l2 == l22, l3 == l33)
 
@@ -92,7 +113,7 @@ object Chapitre16 {
     println("flatten: ", List(List("a","b","c"), List("x","y"), List("z")).flatten, List("hello","world").map(_.toCharArray),List("hello","world").map(_.toCharArray).flatten)
 
     val abcde = List('a','b','c','d','e')
-    val l123456789 = 1 to 9
+    val l123456789 = (1 to 9).toList
     println(abcde zip l123456789)
 
     println(abcde zipWithIndex)
@@ -100,9 +121,27 @@ object Chapitre16 {
     println(List(('a',1), ('b',2)).unzip)// unzip: prend des liste de tuples de taille 2 et les dezip
     println(abcde toString)
 
-    println("mkString: ", abcde mkString, abcde.mkString("!", "-----", "?"))
+    println("mkString: ", abcde mkString, abcde.mkString("!", "-----", "?")) // mkString , addString: hérite du trait Traversable
+    // conversion array
+    println(List(1,2).toArray, Array(1,2).toList)
 
+    val buf = new StringBuilder
+    println(abcde addString (buf, "{",";","}"))
 
+    // lsit vers array
+    val arr = new Array[Int](10)
+    println(arr.mkString(" "))
+    List(1,1,1) copyToArray (arr, 2)
+    println("copytoarray: ", arr.mkString(" ")) // met la liste dans l'array a l'indice 2 (troisieme element)
+
+    val it = abcde.iterator
+    println(it, it.next(), it.next(), it)
+
+    // tri msort.
+    println(msort((x: Int, y: Int) => x<y)(List(-1,2,-5,-6,70,54,-840)), intSort(List(1,0,-1)), intSortDecrease(List(-1,0,1)))
+
+    println(intSort(List(-1,0,1)) == intSortDecrease(List(-1,0,1)).reverse)
+    
   }
 
 }
