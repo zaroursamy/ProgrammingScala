@@ -83,6 +83,26 @@ object Chapitre16 {
     println("init ", List(1,2,3,4).init) // tout sauf le dernier
 
     println("reverse ", List(1,2,3,4).reverse) // ne modifie pas la liste d'origine mais cree une nouvelle instance
+    println("take: ", List(1,2,3,4,5) take 2) // prend les 2 premiers elements
+    println("drop: ", List(1,2,3,4) drop 3) // tous sauf les 3 premiers
+    println("splitat: ", List(1,2,3,4,5) splitAt 3) // split les trois premiers et le reste en deux listes
+    println("apply: ", List(1,2,3,4) apply 0, List(1,2,3,4)(0), List(1,2,3,4) apply 2 equals (List(1,2,3,4) drop 2).head) // retourne le 0eme element. le temps est proportionnel a l'indice....
+    println("indices: ", List(1,2,3).indices) // retourne les indices
+    // flatten ne sapplique qu'aux listes dont les elements sont des listes, sinon erreur ex List(1,2).flatten
+    println("flatten: ", List(List("a","b","c"), List("x","y"), List("z")).flatten, List("hello","world").map(_.toCharArray),List("hello","world").map(_.toCharArray).flatten)
+
+    val abcde = List('a','b','c','d','e')
+    val l123456789 = 1 to 9
+    println(abcde zip l123456789)
+
+    println(abcde zipWithIndex)
+    println(abcde zip l123456789 unzip)
+    println(List(('a',1), ('b',2)).unzip)// unzip: prend des liste de tuples de taille 2 et les dezip
+    println(abcde toString)
+
+    println("mkString: ", abcde mkString, abcde.mkString("!", "-----", "?"))
+
+
   }
 
 }
