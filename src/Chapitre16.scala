@@ -75,6 +75,28 @@ object Chapitre16 {
     m exists (row => row forall (_==0))
   }
 
+  // fold left operation: (z /: xs) (op). z: début, xs: liste, operation binaire commence par z et fait sur les element de la liste
+  //(z /: List(a, b, c)) (op) equals op(op(op(z, a), b), c)
+  def sumList(x: List[Int]): Int = (0 /: x) (_+_)
+  def sumListPlusOne(x: List[Int]): Int = (1 /: x)(_+_)
+  def mulList(x: List[Int]): Int = (1 /: x)(_*_)
+  def concatWord(x: List[String]): String = ("" /: x)(_+" "+_)
+  def concatWord2(x : List[String]): String = (x.head /: x.tail)(_+"|"+_)
+
+  // fold right. Idem que fold left pr operations commutative. Mais pas pr un produit matriciel par ex
+  def rightC(x: List[String]): String = (x :\ "@")(_+"!"+_)
+  def leftC(x: List[String]): String = ("@" /: x)(_+"!"+_)
+
+  // on doit définit un type pour la liste vide quand meme, on peut pas List().
+  // le left prend plus de temps : n-1 fois copie le premier element x.head
+  def flattenL[T](x: List[List[T]]): List[T] = (List[T]()/:x)(_:::_)
+  def flattenR[T](x: List[List[T]]): List[T] = (x :\ List[T]())(_:::_)
+
+  def reverseL[T](x: List[T]) = (List[T]() /: x){(x1,x2) => x2::x1} // inverse en O(n) !!
+
+  def tri[T](f:(T,T) => Boolean)(x: List[T]): List[T] = x sortWith f
+
+
   def main(args: Array[String]): Unit = {
     println(l1 == l11, l2 == l22, l3 == l33)
 
@@ -197,6 +219,10 @@ object Chapitre16 {
 
     println("haszerorow", hasZeroRow(List(List(1,1,1), List(0,0,0))), hasZeroRow(List(List(1,0,1), List(2,3,1))))
 
+    println(concatWord(List("mot1","mot2")), concatWord2(List("hey","hoy")), mulList(List(1,2,3,4)), sumList(List(1,2)), sumListPlusOne(List(1,2)))
+    println("left: ", leftC(List("salut","mec")), "right: ", rightC(List("salut","mec")))
+
+    println("sortWith ", triCroissant(List(-1,1,1,0,8,3,4,5,-8,8,-1,-4,0)))
 
   }
 
