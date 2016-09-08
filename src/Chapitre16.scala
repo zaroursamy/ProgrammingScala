@@ -68,6 +68,23 @@ object Chapitre16 {
     }
   }
 
+  def msortSwapped[T](xs: List[T])(less: (T,T) => Boolean): List[T] = {
+
+    def merge(xs: List[T], ys: List[T]): List[T] = (xs, ys) match{
+      case (Nil, _) => ys
+      case (_, Nil) => xs
+      case (x::xs1, y::ys1) => if(less(x,y)) x::merge(xs1, ys) else y::merge(xs, ys1)
+    }
+
+    val n = xs.length/2
+
+    if(n == 0) xs
+    else{
+      val (xs1, xs2) = xs splitAt n
+      merge(msort(less)(xs1), msort(less)(xs2))
+    }
+  }
+
   val intSort = msort((x:Int, y:Int) => x<y)_
   val intSortDecrease = msort((x:Int, y:Int) => x>y)_
 
@@ -227,7 +244,13 @@ object Chapitre16 {
     println("fill: ", List.fill(3)("samy"), List.fill(2,4)("samy"))
     println("tabulate: " ,List.tabulate(5)(n => n+1), List.tabulate(2,5)( (x,y) => x+y), List.tabulate(5,5)(_*_))
     println("concat ", List.concat(List("ok1","ok2")), List.concat(List(), List('a')))
+    println("zipped: ", (List(10,30), List(5,2,45)).zipped.map(_*_), (List("abc","d","e"), List(3,1,5)).zipped.map(_.length == _),
+      (List("abc","d","e"), List(3,1,5)).zipped.forall(_.length == _), (List("abc","d","e"), List(3,1,5)).zipped.exists(_.length != _))
 
+    // lire p376 pour l'inference de type algo
+    println(abcde sortWith (_<_)) // on sait que abcde est List[Char] donc scala peut inférer le type, et sait que _<_ prendra des Char
+    println(msort[Char](_>_)(abcde)) // on ne peut pas faire msort(_>_)(abcde) car on ne connait pas le type de msort (juste [T] inconu)
+    println(msortSwapped(abcde)(_<_)) // on peut inverser les arguments pour pouvoir le faire: ici on connait le type du premier parametre donc l'inference de msortSwapped est ok
   }
 
 }
