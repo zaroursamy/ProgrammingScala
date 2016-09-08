@@ -104,7 +104,8 @@ object Chapitre16 {
   def rightC(x: List[String]): String = (x :\ "@")(_+"!"+_)
   def leftC(x: List[String]): String = ("@" /: x)(_+"!"+_)
 
-  // on doit définit un type pour la liste vide quand meme, on peut pas List().
+  // on doit définit un type pour la liste vide quand meme, on peut pas List(). En effet, List() = List[Nothing]() et donc si x est de type List[String] y'a une erreur
+  // car le compilo s'attendra a avoir une List[Nothing] pour flattenR
   // le left prend plus de temps : n-1 fois copie le premier element x.head
   def flattenL[T](x: List[List[T]]): List[T] = (List[T]()/:x)(_:::_)
   def flattenR[T](x: List[List[T]]): List[T] = (x :\ List[T]())(_:::_)
@@ -251,6 +252,8 @@ object Chapitre16 {
     println(abcde sortWith (_<_)) // on sait que abcde est List[Char] donc scala peut inférer le type, et sait que _<_ prendra des Char
     println(msort[Char](_>_)(abcde)) // on ne peut pas faire msort(_>_)(abcde) car on ne connait pas le type de msort (juste [T] inconu)
     println(msortSwapped(abcde)(_<_)) // on peut inverser les arguments pour pouvoir le faire: ici on connait le type du premier parametre donc l'inference de msortSwapped est ok
+    // le second argument de msortSwapped , qui est curryied, n'a pas besoin detre analysé pour inférer
+    // pour une fonction polymorphique curryied, il faut mettre l'argument fonction en dernier afin d'inférer sur le premier argument
   }
 
 }
