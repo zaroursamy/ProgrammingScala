@@ -217,12 +217,16 @@ object Chapitre16 {
     // exist: true si un element verifie p
     println("exists: ", List(1,2,5,0,1) exists (_==0))
 
-    println("haszerorow", hasZeroRow(List(List(1,1,1), List(0,0,0))), hasZeroRow(List(List(1,0,1), List(2,3,1))))
+    println("haszerorow", hasZeroRow( List(List(1,1,1), List(0,0,0))), hasZeroRow(List(List(1,0,1), List(2,3,1))))
 
     println(concatWord(List("mot1","mot2")), concatWord2(List("hey","hoy")), mulList(List(1,2,3,4)), sumList(List(1,2)), sumListPlusOne(List(1,2)))
     println("left: ", leftC(List("salut","mec")), "right: ", rightC(List("salut","mec")))
 
-    println("sortWith ", triCroissant(List(-1,1,1,0,8,3,4,5,-8,8,-1,-4,0)))
+    val List(from, until) = List(1,10)
+    println("range ", List.range(from, until), List.range(from, until, 4))
+    println("fill: ", List.fill(3)("samy"), List.fill(2,4)("samy"))
+    println("tabulate: " ,List.tabulate(5)(n => n+1), List.tabulate(2,5)( (x,y) => x+y), List.tabulate(5,5)(_*_))
+    println("concat ", List.concat(List("ok1","ok2")), List.concat(List(), List('a')))
 
   }
 
