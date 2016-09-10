@@ -38,7 +38,7 @@ object Chapitre17 {
 
   for(mot <- wordsArray) words+=mot.toLowerCase
 
-  val map = mutable.Map.empty[String, Int]
+
 
   // les Set
   val num = Set(1,2,3)
@@ -50,6 +50,37 @@ object Chapitre17 {
   val music = mutable.Set.empty[String]
   music ++= List("do", "re", "mi")
 
+  // les Map
+  val map = mutable.Map.empty[String, Int]
+  map("A") = 1
+  map("C") = 3
+
+  def countWords(text: String) = {
+    val counts = mutable.Map.empty[String, Int]
+
+    for(mot <- text.split("[ !?,.;]+")){
+      val motMin = mot.toLowerCase
+      val oldCount = if(counts.contains(motMin)) counts(motMin)  else 0
+      counts += (motMin -> (oldCount+1)) // on aurait pas pu faire += si c'etait immutable
+    }
+    counts
+  }
+
+  // immutable Map
+  val romain = Map("i" -> 1, "ii" -> 2)
+  romain + ("iv" -> 6)
+
+  // mutable Map
+  val romainM = mutable.Map("i"->1, "ii"->2)
+  romainM += ("iii" -> 3)
+
+/*
+une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet. Sinon Map1 , Map2 ...: méthodes optimisées
+ */
+
+  // TreeSet et TreeMap : implémentent les traits SortedSet et SortedMap
+  import scala.collection.immutable.TreeSet
+  val ts = mutable.TreeSet
   def main(args: Array[String]): Unit = {
 
     tableau.foreach(a => print(a +" "))
@@ -73,6 +104,23 @@ object Chapitre17 {
     println(music)
     music.clear()
     println(music)
-    
+
+    println(map, map("C"))
+
+    println("Count words")
+    println(countWords("hi my name is ... hi there is my name"))
+
+    println(romain)
+    romain - "i" // créé une nouvelle instance mais ne modifie pas la Map
+    println(romain)
+    println(romain-"ii")
+    println(romain.contains("i"))
+    println(romain.keys, romain.keySet, romain.values, romain.isEmpty)// .keys = Iterator[String], .keySet = Set[String] immutable
+
+    println(romainM)
+    romainM -= "i"
+    println(romainM)
+    romainM ++= List("v"->5, "x"->10)
+    println(romainM)
   }
 }
