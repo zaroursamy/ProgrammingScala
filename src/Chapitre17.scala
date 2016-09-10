@@ -1,3 +1,5 @@
+import scala.collection.immutable.TreeMap
+
 /**
   * Created by Samy on 09/09/2016.
   */
@@ -74,13 +76,20 @@ object Chapitre17 {
   val romainM = mutable.Map("i"->1, "ii"->2)
   romainM += ("iii" -> 3)
 
+
 /*
 une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet. Sinon Map1 , Map2 ...: méthodes optimisées
  */
 
   // TreeSet et TreeMap : implémentent les traits SortedSet et SortedMap
   import scala.collection.immutable.TreeSet
-  val ts = mutable.TreeSet
+  val ts = TreeSet(5,3,4,8,7,2,3,1,5,2,5,4,6,8,9,1)
+
+  val ts2 = TreeSet("zied","samy","haj","zarour")
+
+  import scala.collection.immutable.TreeMap
+  var tm = TreeMap("b"->2, "e"->5, "a"->1)
+
   def main(args: Array[String]): Unit = {
 
     tableau.foreach(a => print(a +" "))
@@ -122,5 +131,12 @@ une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet
     println(romainM)
     romainM ++= List("v"->5, "x"->10)
     println(romainM)
+
+    println(ts)
+    println(ts2)
+    println(tm)
+    tm += ("z"->26)
+    println(tm)
+
   }
 }
