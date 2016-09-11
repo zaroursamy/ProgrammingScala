@@ -78,7 +78,8 @@ object Chapitre17 {
 
 
 /*
-une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet. Sinon Map1 , Map2 ...: méthodes optimisées
+une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet. Sinon Map1 , Map2 ...: méthodes optimisées.
+pour ces petites tailles, les immutable sont  + compacts que les mutable
  */
 
   // TreeSet et TreeMap : implémentent les traits SortedSet et SortedMap
@@ -89,6 +90,38 @@ une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet
 
   import scala.collection.immutable.TreeMap
   var tm = TreeMap("b"->2, "e"->5, "a"->1)
+
+  val people = Set("arnold","silvester")
+  //people += "jason"
+  var people2 = Set("arnold","silvester")
+  people2 += "jason"
+
+  // remplir une colection avec une autre
+  val colL = List("red","blue")
+  val colS = TreeSet[String]() ++ colL
+  val colS_L = colS.toList
+  val colS_A = colS.toArray
+
+
+  val mutaCol = mutable.Set.empty[String] ++= colS
+
+  def longestWord(words: Array[String]) = {
+
+    var word = words(0)
+    var idx = 0
+
+    for(i <- 1 until words.length){
+      if(words(i).length > word.length){
+        word = words(i)
+        idx = i
+      }
+    }
+    (word, idx)
+
+  }
+
+
+
 
   def main(args: Array[String]): Unit = {
 
@@ -138,5 +171,18 @@ une Map ou un Set avec plus de 5 elements appelles la factory HashMap ou HashSet
     tm += ("z"->26)
     println(tm)
 
+    println(people2)
+    people2 ++= List("rocky","terminator")
+    println(people2)
+
+    println(colL, colS)
+    println(colS_A.toString, colS_L)
+    println(mutaCol)
+
+    println(longestWord(Array("un","deux","troisieme"))._1)
+    val  (lg,id) = longestWord(Array("un","deux","troisieme"))
+    println(lg, id)
+    val lg1, id1 = longestWord(Array("un","deux","troisieme"))
+    println(lg1, id1)
   }
 }
