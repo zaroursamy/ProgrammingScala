@@ -20,6 +20,19 @@ class SlowHeadQueue[T](elemsReversed: List[T]){
   override def toString: String = elemsReversed.mkString(" ")
 }
 
+// combinaison des deux classes grâce a deux listes
+class Queue2[T](private val leading: List[T], private val trailing: List[T]){
+  private def mirror = if(leading.isEmpty) new Queue2(trailing.reverse, Nil) else this
+
+  def head = mirror.leading.head
+
+  def tail = {
+    val q = mirror
+    new Queue2(q.leading.tail, q.trailing)
+  }
+
+  override def toString: String = leading.mkString(" ")+" | "+trailing.mkString(" ")
+}
 
 
 
@@ -30,11 +43,13 @@ object Chapitre19 {
   val q1 = q enqueue 4 // si on avait importer mutable QUeue, ca aurait changé q
   val saq = new SlowAppendQueue[Int](List(10,20,55))
 
+  val q2 = new Queue2[Int](Nil, List(1,2,3))
 
   def main(args: Array[String]): Unit = {
     println(q, q1)
     println(saq)
     val saq1 = saq enqueue 33
     println("saq: ",saq, "saq1: ",saq1)
+    println(q2.tail)
   }
 }
