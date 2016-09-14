@@ -72,6 +72,9 @@ class Queue3[T] private (private val leading: List[T], private val trailing: Lis
 }
 
 // présente au public l'interface
+// le trait est covariant en T lorsque: si S est un sous type de T alors Queue4[S] est un sous type de Queue4[T]
+// on rajoute +T pour dire que c'est covariant, car par defaut scala fait du nonvariant
+// -T : contravariant: si T est sous type de S alors QUeue4[S] est sous type de Queue4[T]
 trait Queue4[T]{
   def head: T
   def tail: List[T]
@@ -95,6 +98,21 @@ object Queue4{
     def enqueue(x: T) = new Queue4Impl(leading, x::trailing)
   }
 }
+
+// Queue4 est un trait, pas un type ! on ne peut pas créer des variables de type Queue4,
+// mais on peut specifier des parametres: Queue4[Int] esdt un type, pas Queue4 qui est un type constructor/trait generique
+def doesCompile(q: Queue4[Int])
+//def doesntCOmpile(q: Queue4)
+
+// avec ce type d'implementation, on ne peut pas mettre +T: Cell[String] ne peut pas etre Cell[Any] !
+// car on peut faire des choses avec cell any qu'on peut pas avec cell string (set(1) sur un cell string par ex)
+// scala: le pb est relevé directement ds lecriture (compiler), en java c relevé au runtime
+class Cell[T](init: T){
+  private[this] var current = init
+  def get = current
+  def set(x: T){current = x}
+}
+
 
 
 object Chapitre19 {
