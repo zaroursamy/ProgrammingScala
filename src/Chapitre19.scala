@@ -113,6 +113,20 @@ class Cell[T](init: T){
   def set(x: T){current = x}
 }
 
+// si on avait mis covariant: ca extends Queue4[Int], sous type de Queue4[Any], donc on peut appeler sqrt !
+// mais le compilo detecte qu'il peut y avoir des erreurs et ne compile pas si on met un +T
+class StrangeIntQueue4 extends Queue4[Int]{
+  override def enqueue(x: Int): Queue4[Int] = {
+    println(math.sqrt(x))
+    super.enqueue(x)
+  }
+
+  override def tail = super.tail
+  override def head = super.head
+}
+
+// impossible: le type de la methode enqueue n'est pas covariant
+//val siq4: Queue4[Any] = new StrangeIntQueue4
 
 
 object Chapitre19 {
@@ -139,5 +153,7 @@ object Chapitre19 {
     val q3bis = q3 enqueue 22
     val q3bisbis = q3 enqueue2 22
     println("q3bis: ", q3bis, "      ", "q3: ", q3, "       ", "q3bisbis: ", q3bisbis)
+
+    siq4.enqueue("abc")
   }
 }
